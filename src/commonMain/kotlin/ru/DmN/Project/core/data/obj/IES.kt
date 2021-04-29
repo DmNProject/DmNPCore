@@ -1,11 +1,11 @@
 package ru.DmN.Project.core.data.obj
 
-import ru.DmN.Project.core.obj.IDPO
+import ru.DmN.Project.core.obj.IObject
 
 /**
  * Extends Storage
  */
-interface IES<T : IDPO> : Iterable<T> {
+interface IES<T : IObject> : Iterable<T> {
     // Fields
     val size: Int
     // Adding
