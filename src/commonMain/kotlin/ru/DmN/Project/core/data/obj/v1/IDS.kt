@@ -1,9 +1,9 @@
-package ru.DmN.Project.core.data.obj
+package ru.DmN.Project.core.data.obj.v1
 
-import ru.DmN.Project.core.obj.IObject
+import ru.DmN.Project.core.obj.api.v0.IObject
 
 /**
- * Defs Storage
+ * Defines Storage
  */
 interface IDS<T : IObject, Args> : Iterable<T> {
     // Size

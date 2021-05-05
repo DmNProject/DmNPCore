@@ -1,4 +1,4 @@
-package ru.DmN.Project.core.obj
+package ru.DmN.Project.core.obj.api.v0
 
 interface IObject {
     val name: String
