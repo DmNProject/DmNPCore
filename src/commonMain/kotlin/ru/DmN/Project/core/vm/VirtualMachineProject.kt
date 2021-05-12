@@ -1,23 +1,21 @@
 package ru.DmN.Project.core.vm
 
-import ru.DmN.Project.core.obj.api.v1.IEP
-import ru.DmN.Project.core.obj.api.v1.IDP
 import ru.DmN.Project.core.obj.api.v0.IObject
-import ru.DmN.Project.core.obj.api.v1.IVObject
+import ru.DmN.Project.core.obj.api.v1.*
 
-abstract class VirtualMachineProject {
+abstract class VirtualMachineProject<O1, O2, O3, O4> {
     abstract val name: String
     abstract val version: String
     abstract val authors: ArrayList<String>
     abstract val license: String
 
-    abstract fun <T> toIObject(obj: T?): IObject?
-    abstract fun <T> toIVObject(obj: T?): IVObject?
-    abstract fun <T> toIEP(obj: T?): IEP<*>?
-    abstract fun <T> toIFMP(obj: T?): IDP<*>?
+    abstract fun toIObject(obj: O1): IObject?
+    abstract fun toIVObject(obj: O2): IVObject?
+    abstract fun toIEP(obj: O3): IEO<*>?
+    abstract fun toIFMP(obj: O4): IDO<*>?
 
-    abstract fun <T> ofIObject(obj: IObject?): T?
-    abstract fun <T> ofIVObject(obj: IVObject?): T?
-    abstract fun <T> ofIEP(obj: IEP<*>?): T?
-    abstract fun <T> ofIFMP(obj: IDP<*>?): T?
+    abstract fun ofIObject(obj: IObject): O1?
+    abstract fun ofIVObject(obj: IVObject): O2?
+    abstract fun ofIEP(obj: IEO<*>): O3?
+    abstract fun ofIFMP(obj: IDO<*>): O4?
 }
