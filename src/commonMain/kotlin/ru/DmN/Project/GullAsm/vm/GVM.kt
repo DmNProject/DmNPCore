@@ -8,7 +8,14 @@ class GVM : IVirtualMachine<ArrayList<Int>> {
     }
 
     override fun eval(code: ArrayList<Int>) {
-        TODO("Not yet implemented")
+        var i = 0
+        while (i < code.size) {
+            when (code[i]) {
+                else -> throw TODO("REALIZE NORMAL EXCEPTION PLEASE")
+            }
+
+            i++
+        }
     }
 }
 
