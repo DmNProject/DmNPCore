@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
 plugins {
     id("maven-publish")
     kotlin("multiplatform") version "1.4.30"
@@ -107,8 +109,12 @@ publishing {
         maven {
             url = uri("https://repo.levkopo.ru/repository/maven/")
             credentials {
-                username = (project.findProperty("levkopoRepoUsername") ?: System.getenv("levkopoRepoUsername")) as String?
-                password = (project.findProperty("levkopoRepoPassword") ?: System.getenv("levkopoRepoPassword")) as String?
+                try {
+                    val properties = Properties()
+                    properties.load(project.rootProject.file("local.properties").inputStream())
+                    username = properties["levkopoRepoUsername"] as String?
+                    password = properties["levkopoRepoPassword"] as String?
+                } catch (ignored: Throwable) { }
             }
         }
     }
