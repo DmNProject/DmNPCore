@@ -68,3 +68,48 @@ kotlin {
         val nativeTest by getting
     }
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "ru.DmN"
+            artifactId = "Project"
+            version = "1.0.0"
+
+            pom {
+                name.set("DmNProject")
+                description.set("DmNProject")
+                url.set("https://github.com/DmNProject/DmNPCore")
+                licenses {
+                    license {
+                        name.set("Apache License 2.0")
+                        url.set("https://github.com/DmNProject/DmNPCore/blob/master/LICENSE")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("Domaman202")
+                        name.set("Pavel 4auka")
+                        email.set("vip.domaman@mail.ru")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:git://DmNProject/DmNPCore")
+                    developerConnection.set("scm:git:ssh://DmNProject/DmNPCore")
+                    url.set("https://github.com/DmNProject/DmNPCore")
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = uri("https://repo.levkopo.ru/repository/maven/")
+            credentials {
+                username = (project.findProperty("levkopoRepoUsername") ?: System.getenv("levkopoRepoUsername")) as String?
+                password = (project.findProperty("levkopoRepoPassword") ?: System.getenv("levkopoRepoPassword")) as String?
+            }
+        }
+    }
+}
