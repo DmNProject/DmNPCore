@@ -27,13 +27,13 @@ abstract class VirtualMachineProject<O1, O2, O3, O4> {
      */
     abstract val license: String
 
-    abstract fun toIObject(obj: O1): IObject?
-    abstract fun toIVObject(obj: O2): IVObject?
-    abstract fun toIEP(obj: O3): IEO<*>?
-    abstract fun toIFMP(obj: O4): IDO<*>?
+    fun toIObject(obj: O1): IObject? = null
+    fun toIVObject(obj: O2): IVObject? = null
+    fun toIEP(obj: O3): IEO<*>? = null
+    fun toIFMP(obj: O4): IDO<*>? = null
 
-    abstract fun ofIObject(obj: IObject): O1?
-    abstract fun ofIVObject(obj: IVObject): O2?
-    abstract fun ofIEP(obj: IEO<*>): O3?
-    abstract fun ofIFMP(obj: IDO<*>): O4?
+    fun ofIObject(obj: IObject): O1? = null
+    fun ofIVObject(obj: IVObject): O2? = null
+    fun ofIEP(obj: IEO<*>): O3? = null
+    fun ofIFMP(obj: IDO<*>): O4? = null
 }

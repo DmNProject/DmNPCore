@@ -5,7 +5,7 @@ plugins {
     kotlin("multiplatform") version "1.4.30"
 }
 
-group = "ru.DmN"
+group = "ru.DmN.Project"
 version = "1.0"
 
 repositories {
@@ -74,9 +74,9 @@ kotlin {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "ru.DmN"
-            artifactId = "Project"
-            version = "1.0.0"
+            groupId = project.group as String?
+            artifactId = "core"
+            version = project.version as String?
 
             pom {
                 name.set("DmNProject")
