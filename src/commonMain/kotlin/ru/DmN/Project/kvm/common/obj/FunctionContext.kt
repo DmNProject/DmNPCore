@@ -6,6 +6,5 @@ import ru.DmN.Project.core.obj.api.v0.IObject
 import ru.DmN.Project.core.obj.api.v0.ObjType
 
 class FunctionContext(override val name: String, override val extends: IES<IObject> = IESImpl()) : Context() {
-    override val type: ObjType
-        get() = ContextType.FUNCTION_CONTEXT
+    override val type: ObjType = ContextType.FUNCTION_CONTEXT
 }

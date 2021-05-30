@@ -8,6 +8,12 @@ class IESImpl<T : IObject> : IES<T> {
     override val size: Int
         get() = data.size
 
+    constructor()
+    constructor(vararg os: T) {
+        for (o in os)
+            data.add(o)
+    }
+
     override fun iterator(): Iterator<T> = data.iterator()
     override fun add(obj: T) { data.add(obj) }
     override fun get(index: Int): T = data[index]
