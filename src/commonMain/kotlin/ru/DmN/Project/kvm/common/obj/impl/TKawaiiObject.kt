@@ -1,9 +1,9 @@
 package ru.DmN.Project.kvm.common.obj.impl
 
-import ru.DmN.Project.core.data.obj.api.v1.IDS
-import ru.DmN.Project.core.data.obj.impl.v1.IDSImpl
-import ru.DmN.Project.core.obj.api.v0.IObject
-import ru.DmN.Project.core.obj.api.v1.IDO
+import ru.DmN.Project.core.data.obj.api.IDS
+import ru.DmN.Project.core.data.obj.impl.IDSImpl
+import ru.DmN.Project.core.obj.IObject
+import ru.DmN.Project.core.obj.IDO
 import ru.DmN.Project.kvm.common.data.api.IFS
 import ru.DmN.Project.kvm.common.data.impl.IFSImpl
 import ru.DmN.Project.kvm.common.obj.KawaiiType

@@ -1,4 +1,4 @@
-package ru.DmN.Project.core.obj.api.v0
+package ru.DmN.Project.core.obj
 
 /**
  * Level 0 object interface

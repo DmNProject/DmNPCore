@@ -1,6 +1,4 @@
-package ru.DmN.Project.core.obj.api.v1
-
-import ru.DmN.Project.core.obj.api.v0.IObject
+package ru.DmN.Project.core.obj
 
 /**
  * Callable Object

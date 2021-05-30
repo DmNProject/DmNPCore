@@ -1,6 +1,6 @@
 package ru.DmN.Project.kvm.common.data.impl
 
-import ru.DmN.Project.core.obj.api.v1.ICO
+import ru.DmN.Project.core.obj.ICO
 import ru.DmN.Project.kvm.common.data.api.IFS
 
 class IFSImpl<VM, O> : IFS<VM, O> {

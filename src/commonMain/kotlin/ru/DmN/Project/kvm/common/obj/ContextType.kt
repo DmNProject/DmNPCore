@@ -1,6 +1,6 @@
 package ru.DmN.Project.kvm.common.obj
 
-import ru.DmN.Project.core.obj.api.v0.ObjType
+import ru.DmN.Project.core.obj.ObjType
 
 class ContextType : ObjType {
     companion object {

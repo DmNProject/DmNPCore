@@ -1,7 +1,9 @@
 package ru.DmN.Project.core.vm
 
-import ru.DmN.Project.core.obj.api.v0.IObject
-import ru.DmN.Project.core.obj.api.v1.*
+import ru.DmN.Project.core.obj.IDO
+import ru.DmN.Project.core.obj.IEO
+import ru.DmN.Project.core.obj.IObject
+import ru.DmN.Project.core.obj.IVObject
 
 /**
  * Template for virtual machine projects

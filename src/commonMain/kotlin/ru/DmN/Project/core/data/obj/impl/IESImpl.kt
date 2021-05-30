@@ -1,7 +1,7 @@
-package ru.DmN.Project.core.data.obj.impl.v1
+package ru.DmN.Project.core.data.obj.impl
 
-import ru.DmN.Project.core.data.obj.api.v1.IES
-import ru.DmN.Project.core.obj.api.v0.IObject
+import ru.DmN.Project.core.data.obj.api.IES
+import ru.DmN.Project.core.obj.IObject
 
 class IESImpl<T : IObject> : IES<T> {
     val data = ArrayList<T>()

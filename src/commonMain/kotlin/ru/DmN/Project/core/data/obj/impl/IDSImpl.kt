@@ -1,7 +1,7 @@
-package ru.DmN.Project.core.data.obj.impl.v1
+package ru.DmN.Project.core.data.obj.impl
 
-import ru.DmN.Project.core.data.obj.api.v1.IDS
-import ru.DmN.Project.core.obj.api.v0.IObject
+import ru.DmN.Project.core.data.obj.api.IDS
+import ru.DmN.Project.core.obj.IObject
 
 class IDSImpl<T : IObject> : IDS<T> {
     val data = ArrayList<T>()

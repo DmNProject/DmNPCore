@@ -1,4 +1,4 @@
-package ru.DmN.Project.core.vm.v0
+package ru.DmN.Project.core.vm
 
 /**
  * (EN) Template for offer machine zero level
