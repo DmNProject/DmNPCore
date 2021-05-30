@@ -10,6 +10,7 @@ version = "1.0"
 
 repositories {
     mavenCentral()
+    maven(url="https://repo.levkopo.ru/repository/maven/")
 }
 
 kotlin {
@@ -50,7 +51,11 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val jvmMain by getting
+        val jvmMain by getting {
+            dependencies {
+                implementation("com.github.kayjamlang:core:1.4-beta3")
+            }
+        }
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
