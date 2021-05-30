@@ -1,7 +1,8 @@
 package ru.DmN.Project.kvm.common.obj.api
 
-import ru.DmN.Project.core.obj.api.v1.ICO
+import ru.DmN.Project.core.data.obj.api.v0.DP
+import ru.DmN.Project.kvm.common.data.api.IFS
 
-interface IFunctionsContainer<VM, O> {
-    val functions: ArrayList<ICO<VM, O>>
+interface IFunctionsContainer<VM, O> : DP {
+    val functions: IFS<VM, O>
 }
