@@ -16,17 +16,7 @@ class IESImpl<T : IObject> : IES<T> {
 
     override fun iterator(): Iterator<T> = data.iterator()
     override fun add(obj: T) { data.add(obj) }
-    override fun get(index: Int): T = data[index]
     override fun get(name: String): T? = data.find { it.name == name }
-    override fun set(obj: T, index: Int) {
-        data[index] = obj
-    }
-    override fun set(obj: T, name: String) {
-        data.forEachIndexed { i, it ->
-            if (it.name == name)
-                data[i] = obj
-        }
-    }
     override fun remove(name: String): T? {
         data.forEachIndexed { i, it ->
             if (it.name == name)

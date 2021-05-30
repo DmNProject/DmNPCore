@@ -12,8 +12,6 @@ interface IDS<T : IObject> : Iterable<T> {
     fun add(obj: T)
     // Getting
     operator fun get(name: String): T?
-    // Setting
-    operator fun set(obj: T, name: String)
     // Removing
     fun remove(name: String): T?
     // As *Type*

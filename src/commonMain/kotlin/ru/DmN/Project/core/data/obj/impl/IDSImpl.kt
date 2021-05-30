@@ -17,12 +17,6 @@ class IDSImpl<T : IObject> : IDS<T> {
     override fun iterator(): Iterator<T> = data.iterator()
     override fun add(obj: T) { data.add(obj) }
     override fun get(name: String): T? = data.find { it.name == name }
-    override fun set(obj: T, name: String) {
-        data.forEachIndexed { i, it ->
-            if (it.name == name)
-                data[i] = obj
-        }
-    }
     override fun remove(name: String): T? {
         data.forEachIndexed { i, it ->
             if (it.name == name)
