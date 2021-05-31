@@ -31,19 +31,19 @@ open class DynamicVirtualMachine(
         TODO("Not yet implemented")
     }
 
-    fun callFunction(instance: IObject?, func: IFunction<DynamicVirtualMachine, IObject?>, args: Iterable<IObject>): Call {
-        val call = Call(this, instance, func, args)
+    fun callFunction(instance: IObject?, func: IFunction<DynamicVirtualMachine, IObject?>, args: Iterable<IObject>, stack: CallStack = CallStack()): Call {
+        val call = Call(this, stack, instance, func, args)
         func.call(call)
         return call
     }
 
-    fun callFunction(instance: IFunctionsContainer<DynamicVirtualMachine, IObject?>, name: String, args: Iterable<IObject>): Call? {
+    fun callFunction(instance: IFunctionsContainer<DynamicVirtualMachine, IObject?>, name: String, args: Iterable<IObject>, stack: CallStack = CallStack()): Call? {
         val func = instance.functions[name, args]
 
         return if (func == null)
             null
         else {
-            val call = Call(this, instance, func, args)
+            val call = Call(this, stack, instance, func, args)
             func.call(call)
             call
         }
