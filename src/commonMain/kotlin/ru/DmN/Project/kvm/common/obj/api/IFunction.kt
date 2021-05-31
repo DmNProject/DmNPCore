@@ -1,12 +1,14 @@
 package ru.DmN.Project.kvm.common.obj.api
 
-import ru.DmN.Project.core.obj.IObject
-import ru.DmN.Project.core.obj.ICO
 import ru.DmN.Project.core.obj.IEO
-import ru.DmN.Project.core.util.Utils
+import ru.DmN.Project.core.obj.IObject
+import ru.DmN.Project.core.util.objectEquals
+import ru.DmN.Project.kvm.common.vm.Call
 
-interface IFunction<VM, I> : ICO<VM, I> {
+interface IFunction<VM, I> : IObject {
     val args: Iterable<IObject>
+
+    fun call(call: Call)
 
     fun argEquals(args1: Iterator<IObject>): Boolean {
         var i = 0
@@ -21,7 +23,7 @@ interface IFunction<VM, I> : ICO<VM, I> {
             //
             val o1 = iterator.next()
             val o2 = iterator.next()
-            if ((o1 is IEO<*> && Utils.objectEquals(o1, o2)) || o1.name == o2.name)
+            if ((o1 is IEO<*> && objectEquals(o1, o2)) || o1.name == o2.name)
                 j++
         }
 
