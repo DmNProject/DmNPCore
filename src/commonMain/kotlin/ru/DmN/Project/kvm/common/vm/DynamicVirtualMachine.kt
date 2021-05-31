@@ -4,10 +4,7 @@ import ru.DmN.Project.core.data.obj.api.IDS
 import ru.DmN.Project.core.data.obj.api.IES
 import ru.DmN.Project.core.data.obj.impl.IDSImpl
 import ru.DmN.Project.core.data.obj.impl.IESImpl
-import ru.DmN.Project.core.obj.IDO
-import ru.DmN.Project.core.obj.IEO
 import ru.DmN.Project.core.obj.IObject
-import ru.DmN.Project.core.obj.ObjType
 import ru.DmN.Project.core.vm.IVirtualMachine
 import ru.DmN.Project.kvm.common.data.api.IFS
 import ru.DmN.Project.kvm.common.data.impl.IFSImpl
@@ -21,9 +18,12 @@ import ru.DmN.Project.kvm.common.utils.getUndefined
 open class DynamicVirtualMachine(
     name: String = "DynamicVirtualMachine",
     defines: IDS<IObject> = IDSImpl(),
-    functions: IFS<DynamicVirtualMachine, KObject> = IFSImpl(),
+    functions: IFS<DynamicVirtualMachine> = IFSImpl(),
     extends: IES<IObject> = IESImpl()
-) : IVirtualMachine<ByteArray>, KObject(name, KawaiiType.VM, defines, functions, extends) {
+) : IVirtualMachine<ByteArray>, KObject<DynamicVirtualMachine>(name, KawaiiType.VM, defines, functions, extends) {
+    val tNULL get() = defines["null"]!!
+    val tUNDEFINED get() = defines["undefined"]!!
+
     override fun init() {
         defines.add(SpecValueObject("null", null))
         defines.add(SpecValueObject("undefined", getUndefined()))
@@ -33,7 +33,7 @@ open class DynamicVirtualMachine(
         TODO("Not yet implemented")
     }
 
-    fun callFunction(instance: IObject?, func: IFunction<DynamicVirtualMachine, IObject?>, args: Iterable<IObject>, stack: CallStack = CallStack()): Call {
+    fun <I : IObject> callFunction(instance: I, func: IFunction<I>, args: Iterable<IObject>, stack: CallStack = CallStack()): Call<*> {
         val call = Call(this, stack, instance, func, args)
         stack.addCall(call)
         func.call(call)
@@ -41,7 +41,7 @@ open class DynamicVirtualMachine(
         return call
     }
 
-    fun callFunction(instance: IFunctionsContainer<DynamicVirtualMachine, IObject?>, name: String, args: Iterable<IObject>, stack: CallStack = CallStack()): Call? {
+    fun <I : IObject> callFunction(instance: IFunctionsContainer<I>, name: String, args: Iterable<IObject>, stack: CallStack = CallStack()): Call<*>? {
         val func = instance.functions[name, args]
 
         return if (func == null)

@@ -13,21 +13,21 @@ import ru.DmN.Project.kvm.common.obj.api.IFunctionsContainer
 import ru.DmN.Project.kvm.common.vm.Call
 import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine
 
-class TKawaiiObject : IDO<IObject>, IFunctionsContainer<DynamicVirtualMachine, TKawaiiObject> {
+class TKawaiiObject : IDO<IObject>, IFunctionsContainer<TKawaiiObject> {
     override val name: String
         get() = "ru.DmN.Project.kvm.Object"
     override val type: KawaiiType
         get() = KawaiiType.OBJ
 
     override val defines: IDS<IObject> = IDSImpl()
-    override val functions: IFS<DynamicVirtualMachine, TKawaiiObject> = IFSImpl()
+    override val functions: IFS<TKawaiiObject> = IFSImpl()
 
     init {
-        functions.add(object : Function<DynamicVirtualMachine, TKawaiiObject>() {
+        functions.add(object : Function<TKawaiiObject>() {
             override val name: String = "toString"
             override val args: Iterable<IObject> = arrayListOf<IObject>().iterator() as Iterable<IObject>
 
-            override fun call(call: Call) {
+            override fun call(call: Call<TKawaiiObject>) {
                 TODO("Not yet implemented")
             }
         })

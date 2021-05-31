@@ -7,11 +7,11 @@ import ru.DmN.Project.core.obj.IEO
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.obj.ObjType
 import ru.DmN.Project.kvm.common.data.api.IFS
-import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine
 
-open class KObject(override val name: String,
-                   override val type: ObjType,
-                   override val defines: IDS<IObject>,
-                   override val functions: IFS<DynamicVirtualMachine, KObject>,
-                   override val extends: IES<IObject>
-) : IEO<IObject>, IDO<IObject>, IFunctionsContainer<DynamicVirtualMachine, KObject>
+open class KObject <T : KObject<T>> (
+    override val name: String,
+    override val type: ObjType,
+    override val defines: IDS<IObject>,
+    override val functions: IFS<T>,
+    override val extends: IES<IObject>
+) : IEO<IObject>, IDO<IObject>, IFunctionsContainer<T>
