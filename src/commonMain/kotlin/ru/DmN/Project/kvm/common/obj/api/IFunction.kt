@@ -5,7 +5,7 @@ import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.util.objectEquals
 import ru.DmN.Project.kvm.common.vm.Call
 
-interface IFunction<VM, I> : IObject {
+interface IFunction<I> : IObject {
     val args: Iterable<IObject>
     val code: ByteArray?
 

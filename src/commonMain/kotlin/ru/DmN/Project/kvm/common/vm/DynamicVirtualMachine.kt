@@ -2,12 +2,15 @@ package ru.DmN.Project.kvm.common.vm
 
 import ru.DmN.Project.core.data.obj.api.IDS
 import ru.DmN.Project.core.data.obj.api.IES
+import ru.DmN.Project.core.data.obj.impl.IDSImpl
+import ru.DmN.Project.core.data.obj.impl.IESImpl
 import ru.DmN.Project.core.obj.IDO
 import ru.DmN.Project.core.obj.IEO
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.obj.ObjType
 import ru.DmN.Project.core.vm.IVirtualMachine
 import ru.DmN.Project.kvm.common.data.api.IFS
+import ru.DmN.Project.kvm.common.data.impl.IFSImpl
 import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.obj.api.IFunctionsContainer
@@ -17,9 +20,9 @@ import ru.DmN.Project.kvm.common.utils.getUndefined
 
 open class DynamicVirtualMachine(
     name: String = "DynamicVirtualMachine",
-    defines: IDS<IObject>,
-    functions: IFS<DynamicVirtualMachine, KObject>,
-    extends: IES<IObject>
+    defines: IDS<IObject> = IDSImpl(),
+    functions: IFS<DynamicVirtualMachine, KObject> = IFSImpl(),
+    extends: IES<IObject> = IESImpl()
 ) : IVirtualMachine<ByteArray>, KObject(name, KawaiiType.VM, defines, functions, extends) {
     override fun init() {
         defines.add(SpecValueObject("null", null))

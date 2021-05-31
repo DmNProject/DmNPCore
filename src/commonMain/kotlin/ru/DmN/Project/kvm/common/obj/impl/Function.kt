@@ -4,7 +4,7 @@ import ru.DmN.Project.core.obj.ObjType
 import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.kvm.common.obj.api.IFunction
 
-abstract class Function<VM, I> : IFunction<VM, I> {
+abstract class Function<I> : IFunction<I> {
     override val type: ObjType = KawaiiType.VM
     override val code: ByteArray? = null
 }
