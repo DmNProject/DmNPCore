@@ -7,7 +7,7 @@ import kotlin.test.Test
 
 class CallTest {
     @Test
-    fun addCallFunctionTest() {
+    fun callFunctionTest() {
         val vm = DynamicVirtualMachine()
 
         vm.init()
