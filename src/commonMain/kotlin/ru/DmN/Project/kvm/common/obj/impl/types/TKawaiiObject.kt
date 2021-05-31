@@ -20,7 +20,7 @@ class TKawaiiObject : IDO<IObject>, IFunctionsContainer {
     init {
         functions.add(object : Function() {
             override val name: String = "toString"
-            override val args: Iterable<IObject> = arrayListOf<IObject>().iterator() as Iterable<IObject>
+            override val args: Iterable<IObject> = arrayListOf<IObject>().asIterable()
 
             override fun call(call: Call) {
                 TODO("Not yet implemented")

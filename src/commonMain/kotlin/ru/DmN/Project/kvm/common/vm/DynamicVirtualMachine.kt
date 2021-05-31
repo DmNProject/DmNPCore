@@ -13,6 +13,7 @@ import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.obj.api.IFunctionsContainer
 import ru.DmN.Project.kvm.common.obj.api.KObject
 import ru.DmN.Project.kvm.common.obj.impl.SpecValueObject
+import ru.DmN.Project.kvm.common.obj.impl.types.TKawaiiObject
 import ru.DmN.Project.kvm.common.utils.getUndefined
 
 open class DynamicVirtualMachine(
@@ -29,6 +30,7 @@ open class DynamicVirtualMachine(
     override fun init() {
         defines.add(SpecValueObject("null", null))
         defines.add(SpecValueObject("undefined", getUndefined()))
+        defines.add(TKawaiiObject())
     }
 
     override fun eval(code: ByteArray) {

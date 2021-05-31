@@ -8,4 +8,14 @@ import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.kvm.common.obj.api.KObject
 import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine
 
-class TKawaiiString(vm: DynamicVirtualMachine, override var value: Any?) : KObject("ru.DmN.Project.kvm.String", KawaiiType.OBJ, IDSImpl(), IFSImpl(), IESImpl(vm.tOBJECT)), IVObject
+class TKawaiiString(
+    vm: DynamicVirtualMachine,
+    override var value: Any?) : KObject(
+    "ru.DmN.Project.kvm.String",
+    KawaiiType.OBJ,
+    IDSImpl(),
+    IFSImpl(),
+    IESImpl(vm.tOBJECT)
+), IVObject {
+    override fun toString(): String = "{Type = KawaiiString; Value = $value}"
+}
