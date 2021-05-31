@@ -33,7 +33,7 @@ open class DynamicVirtualMachine(
         TODO("Not yet implemented")
     }
 
-    fun <I : IObject> callFunction(instance: I, func: IFunction<I>, args: Iterable<IObject>, stack: CallStack = CallStack()): Call<*> {
+    fun <I : IObject> callFunction(instance: I, func: IFunction<I>, args: Iterable<IObject>, stack: CallStack = CallStack()): Call {
         val call = Call(this, stack, instance, func, args)
         stack.addCall(call)
         func.call(call)
@@ -41,17 +41,13 @@ open class DynamicVirtualMachine(
         return call
     }
 
-    fun <I : IObject> callFunction(instance: IFunctionsContainer<I>, name: String, args: Iterable<IObject>, stack: CallStack = CallStack()): Call<*>? {
+    fun <I : IObject> callFunction(instance: IFunctionsContainer<I>, name: String, args: Iterable<IObject>, stack: CallStack = CallStack()): Call? {
         val func = instance.functions[name, args]
 
         return if (func == null)
             null
         else {
-            val call = Call(this, stack, instance, func, args)
-            stack.addCall(call)
-            func.call(call)
-            stack.removeCall(call)
-            call
+           callFunction(instance, func, args, stack)
         }
     }
 }

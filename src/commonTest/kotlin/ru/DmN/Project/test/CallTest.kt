@@ -1,7 +1,5 @@
 package ru.DmN.Project.test
 
-import ru.DmN.Project.core.obj.IObject
-import ru.DmN.Project.kvm.common.obj.api.KObject
 import ru.DmN.Project.kvm.common.obj.impl.Function
 import ru.DmN.Project.kvm.common.vm.Call
 import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine
@@ -16,11 +14,11 @@ class CallTest {
 
         vm.functions.add(object : Function<DynamicVirtualMachine>() {
             override val name: String = "foo"
-            override fun call(call: Call<DynamicVirtualMachine>) {
+            override fun call(call: Call) {
                 println("foo!")
             }
         })
 
-//        vm.callFunction(vm, )
+        vm.callFunction(vm, "foo", emptyList())
     }
 }
