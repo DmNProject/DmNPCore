@@ -8,10 +8,10 @@ import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.obj.ObjType
 import ru.DmN.Project.kvm.common.data.api.IFS
 
-open class KObject <T : KObject<T>> (
+open class KObject (
     override val name: String,
     override val type: ObjType,
     override val defines: IDS<IObject>,
-    override val functions: IFS<T>,
+    override val functions: IFS,
     override val extends: IES<IObject>
-) : IEO<IObject>, IDO<IObject>, IFunctionsContainer<T>
+) : IEO<IObject>, IDO<IObject>, IFunctionsContainer

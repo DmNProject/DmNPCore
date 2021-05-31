@@ -6,7 +6,7 @@ import ru.DmN.Project.core.util.objectEquals
 import ru.DmN.Project.kvm.common.utils.AtomicInt
 import ru.DmN.Project.kvm.common.vm.Call
 
-interface IFunction<out I : IObject> : IObject {
+interface IFunction : IObject {
     val args: Iterable<IObject>
     val code: ByteArray?
 

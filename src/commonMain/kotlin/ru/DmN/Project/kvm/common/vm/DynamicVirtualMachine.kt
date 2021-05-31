@@ -18,11 +18,13 @@ import ru.DmN.Project.kvm.common.utils.getUndefined
 open class DynamicVirtualMachine(
     name: String = "DynamicVirtualMachine",
     defines: IDS<IObject> = IDSImpl(),
-    functions: IFS<DynamicVirtualMachine> = IFSImpl(),
+    functions: IFS = IFSImpl(),
     extends: IES<IObject> = IESImpl()
-) : IVirtualMachine<ByteArray>, KObject<DynamicVirtualMachine>(name, KawaiiType.VM, defines, functions, extends) {
+) : IVirtualMachine<ByteArray>, KObject(name, KawaiiType.VM, defines, functions, extends) {
+    //
     val tNULL get() = defines["null"]!!
     val tUNDEFINED get() = defines["undefined"]!!
+    val tOBJECT get() = defines["ru.DmN.Project.kvm.Object"]!!
 
     override fun init() {
         defines.add(SpecValueObject("null", null))
@@ -33,7 +35,7 @@ open class DynamicVirtualMachine(
         TODO("Not yet implemented")
     }
 
-    fun <I : IObject> callFunction(instance: I, func: IFunction<I>, args: Iterable<IObject>, stack: CallStack = CallStack()): Call {
+    fun callFunction(instance: IObject, func: IFunction, args: Iterable<IObject>, stack: CallStack = CallStack()): Call {
         val call = Call(this, stack, instance, func, args)
         stack.addCall(call)
         func.call(call)
@@ -41,7 +43,7 @@ open class DynamicVirtualMachine(
         return call
     }
 
-    fun <I : IObject> callFunction(instance: IFunctionsContainer<I>, name: String, args: Iterable<IObject>, stack: CallStack = CallStack()): Call? {
+    fun callFunction(instance: IFunctionsContainer, name: String, args: Iterable<IObject>, stack: CallStack = CallStack()): Call? {
         val func = instance.functions[name, args]
 
         return if (func == null)
