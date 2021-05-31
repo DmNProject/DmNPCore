@@ -7,8 +7,9 @@ import ru.DmN.Project.kvm.common.vm.Call
 
 interface IFunction<VM, I> : IObject {
     val args: Iterable<IObject>
+    val code: ByteArray?
 
-    fun call(call: Call)
+    fun call(call: Call) = code?.let { call.vm.eval(it) }
 
     fun argEquals(args1: Iterator<IObject>): Boolean {
         var i = 0

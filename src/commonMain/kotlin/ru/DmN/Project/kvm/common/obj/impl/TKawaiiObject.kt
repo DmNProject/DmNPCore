@@ -23,13 +23,9 @@ class TKawaiiObject : IDO<IObject>, IFunctionsContainer<DynamicVirtualMachine, T
     override val functions: IFS<DynamicVirtualMachine, TKawaiiObject> = IFSImpl()
 
     init {
-        functions.add(object : IFunction<DynamicVirtualMachine, TKawaiiObject> {
-            override val name: String
-                get() = "toString"
-            override val type: ObjType
-                get() = KawaiiType.FUN
-            override val args: Iterable<IObject>
-                get() = arrayListOf<IObject>().iterator() as Iterable<IObject>
+        functions.add(object : Function<DynamicVirtualMachine, TKawaiiObject>() {
+            override val name: String = "toString"
+            override val args: Iterable<IObject> = arrayListOf<IObject>().iterator() as Iterable<IObject>
 
             override fun call(call: Call) {
                 TODO("Not yet implemented")

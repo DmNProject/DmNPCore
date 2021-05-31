@@ -12,6 +12,6 @@ import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine
 open class KObject(override val name: String,
                    override val type: ObjType,
                    override val defines: IDS<IObject>,
-                   override val extends: IES<IObject>,
-                   override val functions: IFS<DynamicVirtualMachine, KObject>
+                   override val functions: IFS<DynamicVirtualMachine, KObject>,
+                   override val extends: IES<IObject>
 ) : IEO<IObject>, IDO<IObject>, IFunctionsContainer<DynamicVirtualMachine, KObject>

@@ -11,17 +11,16 @@ import ru.DmN.Project.kvm.common.data.api.IFS
 import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.obj.api.IFunctionsContainer
+import ru.DmN.Project.kvm.common.obj.api.KObject
 import ru.DmN.Project.kvm.common.obj.impl.SpecValueObject
 import ru.DmN.Project.kvm.common.utils.getUndefined
 
 open class DynamicVirtualMachine(
-    override val defines: IDS<IObject>,
-    override val functions: IFS<DynamicVirtualMachine, IObject>,
-    override val extends: IES<IObject>,
-    override val name: String = "DynamicVirtualMachine"
-) : IVirtualMachine<ByteArray>, IEO<IObject>, IDO<IObject>, IFunctionsContainer<DynamicVirtualMachine, IObject> {
-    override val type: ObjType = KawaiiType.VM
-
+    name: String = "DynamicVirtualMachine",
+    defines: IDS<IObject>,
+    functions: IFS<DynamicVirtualMachine, KObject>,
+    extends: IES<IObject>
+) : IVirtualMachine<ByteArray>, KObject(name, KawaiiType.VM, defines, functions, extends) {
     override fun init() {
         defines.add(SpecValueObject("null", null))
         defines.add(SpecValueObject("undefined", getUndefined()))
