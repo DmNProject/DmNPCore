@@ -3,6 +3,7 @@ package ru.DmN.Project.kvm.common.obj.api
 import ru.DmN.Project.core.obj.IEO
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.util.objectEquals
+import ru.DmN.Project.kvm.common.utils.AtomicInt
 import ru.DmN.Project.kvm.common.vm.Call
 
 interface IFunction<out I : IObject> : IObject {
@@ -11,7 +12,7 @@ interface IFunction<out I : IObject> : IObject {
 
     fun call(call: Call) = code?.let { call.vm.eval(it) }
 
-    fun argEquals(args1: Iterator<IObject>): Boolean {
+    fun argEquals(args1: Iterator<IObject>, c: AtomicInt = AtomicInt()): Boolean {
         var i = 0
         var j = 0
 
@@ -24,7 +25,7 @@ interface IFunction<out I : IObject> : IObject {
             //
             val o1 = iterator.next()
             val o2 = iterator.next()
-            if ((o1 is IEO<*> && objectEquals(o1, o2)) || o1.name == o2.name)
+            if ((o1 is IEO<*> && objectEquals(o1, o2, true, c)) || o1.name == o2.name)
                 j++
         }
 
