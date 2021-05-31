@@ -33,7 +33,9 @@ open class DynamicVirtualMachine(
 
     fun callFunction(instance: IObject?, func: IFunction<DynamicVirtualMachine, IObject?>, args: Iterable<IObject>, stack: CallStack = CallStack()): Call {
         val call = Call(this, stack, instance, func, args)
+        stack.addCall(call)
         func.call(call)
+        stack.removeCall(call)
         return call
     }
 
@@ -44,7 +46,9 @@ open class DynamicVirtualMachine(
             null
         else {
             val call = Call(this, stack, instance, func, args)
+            stack.addCall(call)
             func.call(call)
+            stack.removeCall(call)
             call
         }
     }
