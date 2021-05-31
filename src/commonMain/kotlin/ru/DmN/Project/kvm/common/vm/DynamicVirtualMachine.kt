@@ -13,7 +13,9 @@ import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.obj.api.IFunctionsContainer
 import ru.DmN.Project.kvm.common.obj.api.KObject
 import ru.DmN.Project.kvm.common.obj.impl.SpecValueObject
+import ru.DmN.Project.kvm.common.obj.impl.types.TKawaiiInt
 import ru.DmN.Project.kvm.common.obj.impl.types.TKawaiiObject
+import ru.DmN.Project.kvm.common.obj.impl.types.TKawaiiString
 import ru.DmN.Project.kvm.common.utils.getUndefined
 
 open class DynamicVirtualMachine(
@@ -26,11 +28,15 @@ open class DynamicVirtualMachine(
     val tNULL get() = defines["null"]!!
     val tUNDEFINED get() = defines["undefined"]!!
     val tOBJECT get() = defines["ru.DmN.Project.kvm.Object"]!!
+    val tSTRING get() = defines["ru.DmN.Project.kvm.String"]!!
+    val tINT get() = defines["ru.DmN.Project.kvm.Int"]!!
 
     override fun init() {
         defines.add(SpecValueObject("null", null))
         defines.add(SpecValueObject("undefined", getUndefined()))
         defines.add(TKawaiiObject())
+        defines.add(TKawaiiString(tOBJECT))
+        defines.add(TKawaiiInt(tOBJECT))
     }
 
     override fun eval(code: ByteArray) {
