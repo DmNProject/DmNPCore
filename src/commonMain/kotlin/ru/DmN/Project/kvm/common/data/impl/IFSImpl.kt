@@ -25,13 +25,13 @@ class IFSImpl : IFS {
             val i = AtomicInt()
             val func = Pair(it, i)
 
-            if (it.name == name && it.argEquals(args.iterator(), i))
+            if (it.argEquals(args.iterator(), i))
                 functions.add(func)
         }
 
-        var func: Pair<IFunction?, AtomicInt> = Pair(null, AtomicInt(-1))
+        var func: Pair<IFunction?, AtomicInt> = Pair(null, AtomicInt(Int.MAX_VALUE))
         for (e in functions)
-            if (e.second.i > func.second.i)
+            if (e.second.i < func.second.i)
                 func = e
         return func.first
     }

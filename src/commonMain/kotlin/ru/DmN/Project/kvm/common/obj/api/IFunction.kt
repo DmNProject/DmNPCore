@@ -12,7 +12,7 @@ interface IFunction : IObject {
 
     fun call(call: Call) = code?.let { call.vm.eval(it) }
 
-    fun argEquals(args1: Iterator<IObject>, c: AtomicInt = AtomicInt()): Boolean {
+    fun argEquals(args1: Iterator<IObject>, counter: AtomicInt = AtomicInt()): Boolean {
         var i = 0
         var j = 0
 
@@ -20,12 +20,12 @@ interface IFunction : IObject {
         while (iterator.hasNext()) {
             if (!args1.hasNext())
                 return false
-            //
             i++
             //
             val o1 = iterator.next()
             val o2 = args1.next()
-            if ((o2 is IEO<*> && objectEquals(o2, o1, true, c)) || o1.name == o2.name)
+            //
+            if (o2 is IEO<*> && objectEquals(o2, o1, counter))
                 j++
         }
 
