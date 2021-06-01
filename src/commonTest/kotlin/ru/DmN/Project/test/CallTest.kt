@@ -61,4 +61,30 @@ class CallTest {
 
         println("callFunctionWithArgs complete!!! Result => " + (call.result as TInstance).value)
     }
+
+    @Test
+    fun test() {
+        val vm = DynamicVirtualMachine()
+
+        vm.init()
+
+        vm.functions.add(object : Function() {
+            override val name: String = "foo"
+            override val args: Iterable<IObject> = arrayListOf(vm.tOBJECT)
+            override fun call(call: Call) {
+                println("Foo Object arg call!")
+            }
+        })
+
+        vm.functions.add(object : Function() {
+            override val name: String = "foo"
+            override val args: Iterable<IObject> = arrayListOf(vm.tINT)
+            override fun call(call: Call) {
+                println("Foo Int arg call!")
+            }
+        })
+
+        vm.callFunction(vm, "foo", arrayListOf(createInt(vm, "i", 12) as IObject))
+        vm.callFunction(vm, "foo", arrayListOf(createString(vm, "str", "Hello, World!") as IObject))
+    }
 }
