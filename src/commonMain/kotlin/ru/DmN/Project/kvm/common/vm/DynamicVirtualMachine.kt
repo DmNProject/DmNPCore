@@ -13,7 +13,7 @@ import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.obj.api.IFunctionsContainer
 import ru.DmN.Project.kvm.common.obj.api.KObject
 import ru.DmN.Project.kvm.common.obj.impl.SpecValueObject
-import ru.DmN.Project.kvm.common.obj.impl.types.TKawaiiInt
+import ru.DmN.Project.kvm.common.obj.impl.types.TKawaiiNumber
 import ru.DmN.Project.kvm.common.obj.impl.types.TKawaiiObject
 import ru.DmN.Project.kvm.common.obj.impl.types.TKawaiiString
 import ru.DmN.Project.kvm.common.utils.getUndefined
@@ -36,7 +36,7 @@ open class DynamicVirtualMachine(
         defines.add(SpecValueObject("undefined", getUndefined()))
         defines.add(TKawaiiObject())
         defines.add(TKawaiiString(tOBJECT))
-        defines.add(TKawaiiInt(tOBJECT))
+        defines.add(TKawaiiNumber(tOBJECT))
     }
 
     override fun eval(code: ByteArray) {
