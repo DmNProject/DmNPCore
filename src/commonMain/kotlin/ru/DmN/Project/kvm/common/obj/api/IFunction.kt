@@ -25,7 +25,7 @@ interface IFunction : IObject {
             //
             val o1 = iterator.next()
             val o2 = args1.next()
-            if ((o1 is IEO<*> && objectEquals(o1, o2, true, c)) || o1.name == o2.name)
+            if ((o2 is IEO<*> && objectEquals(o2, o1, true, c)) || o1.name == o2.name)
                 j++
         }
 
