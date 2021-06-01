@@ -3,8 +3,8 @@ package ru.DmN.Project.test
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.kvm.common.obj.api.Function
 import ru.DmN.Project.kvm.common.obj.impl.types.TInstance
-import ru.DmN.Project.kvm.common.obj.impl.types.TKawaiiString
-import ru.DmN.Project.kvm.common.utils.createString
+import ru.DmN.Project.kvm.common.utils.Utils.createInt
+import ru.DmN.Project.kvm.common.utils.Utils.createString
 import ru.DmN.Project.kvm.common.vm.Call
 import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine
 import kotlin.test.Test
@@ -30,6 +30,35 @@ class CallTest {
         assertNotNull(call)
         assertEquals((call.result as TInstance).value, "Foo!")
 
-        println("callFunctionTest complete!!! Result => " + call.result)
+        println("callFunctionTest complete!!! Result => " + (call.result as TInstance).value)
+    }
+
+    @Test
+    fun callFunctionWithArgs() {
+        val vm = DynamicVirtualMachine()
+
+        vm.init()
+
+        vm.functions.add(object : Function() {
+            override val name: String = "add"
+            override val args: Iterable<IObject> = arrayListOf(vm.tINT, vm.tINT)
+            override fun call(call: Call) {
+                val iterator = call.args.iterator()
+                val a = iterator.next() as TInstance
+                val b = iterator.next() as TInstance
+
+                call.result = createInt(call.vm, "result", a.value as Int + b.value as Int) as IObject
+            }
+        })
+
+        val aVal = createInt(vm, "a", 12) as IObject
+        val bVal = createInt(vm, "b", 21) as IObject
+
+        val call = vm.callFunction(vm, "add", arrayListOf(aVal, bVal))
+
+        assertNotNull(call)
+        assertEquals((call.result as TInstance).value, 33)
+
+        println("callFunctionWithArgs complete!!! Result => " + (call.result as TInstance).value)
     }
 }
