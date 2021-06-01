@@ -63,7 +63,7 @@ class CallTest {
     }
 
     @Test
-    fun test() {
+    fun callMultiFunctions() {
         val vm = DynamicVirtualMachine()
 
         vm.init()
