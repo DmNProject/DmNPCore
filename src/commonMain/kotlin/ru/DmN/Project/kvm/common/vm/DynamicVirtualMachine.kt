@@ -24,12 +24,13 @@ open class DynamicVirtualMachine(
     functions: IFS = IFSImpl(),
     extends: IES<IObject> = IESImpl()
 ) : IVirtualMachine<ByteArray>, KObject(name, KawaiiType.VM, defines, functions, extends) {
+    inline val tNULL        get() = defines["null"]!!
+    inline val tUNDEFINED   get() = defines["undefined"]!!
+    inline val tOBJECT      get() = defines["ru.DmN.Project.kvm.Object"]!!
+    inline val tSTRING      get() = defines["ru.DmN.Project.kvm.String"]!!
+    inline val tNUMBER      get() = defines["ru.DmN.Project.kvm.Number"]!!
     //
-    val tNULL get() = defines["null"]!!
-    val tUNDEFINED get() = defines["undefined"]!!
-    val tOBJECT get() = defines["ru.DmN.Project.kvm.Object"]!!
-    val tSTRING get() = defines["ru.DmN.Project.kvm.String"]!!
-    val tINT get() = defines["ru.DmN.Project.kvm.Int"]!!
+    val mainThread = Thread("MainThread")
 
     override fun init() {
         defines.add(SpecValueObject("null", null))
@@ -37,6 +38,8 @@ open class DynamicVirtualMachine(
         defines.add(TKawaiiObject())
         defines.add(TKawaiiString(tOBJECT))
         defines.add(TKawaiiNumber(tOBJECT))
+        //
+        extends.add(tOBJECT)
     }
 
     override fun eval(code: ByteArray) {

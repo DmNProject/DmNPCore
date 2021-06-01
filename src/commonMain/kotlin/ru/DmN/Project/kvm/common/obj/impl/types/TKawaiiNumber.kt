@@ -7,4 +7,4 @@ import ru.DmN.Project.kvm.common.data.impl.IFSImpl
 import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.kvm.common.obj.api.KObject
 
-class TKawaiiNumber(parent: IObject) : KObject("ru.DmN.Project.kvm.Int", KawaiiType.OBJ, IDSImpl(), IFSImpl(), IESImpl(parent))
+class TKawaiiNumber(parent: IObject) : KObject("ru.DmN.Project.kvm.Number", KawaiiType.OBJ, IDSImpl(), IFSImpl(), IESImpl(parent))

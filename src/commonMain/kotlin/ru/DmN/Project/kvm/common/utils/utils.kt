@@ -20,7 +20,7 @@ object Utils {
 
     fun createInt(vm: DynamicVirtualMachine, name: String, value: Int?): TInstance? {
         return try {
-            createX(vm.tINT, name, value)
+            createX(vm.tNUMBER, name, value)
         } catch (ignored: Exception) {
             null
         }
