@@ -7,26 +7,26 @@ class KawaiiType : ObjType {
         /**
          * VirtualMachine
          */
-        val VM get() = KawaiiType()
+        val VM = KawaiiType()
 
         /**
          * Special
          */
-        val SPC get() = KawaiiType()
+        val SPC = KawaiiType()
 
         /**
          * Variable
          */
-        val VAR get() = KawaiiType()
+        val VAR = KawaiiType()
 
         /**
          * Function
          */
-        val FUN get() = KawaiiType()
+        val FUN = KawaiiType()
 
         /**
          * Object
          */
-        val OBJ get() = KawaiiType()
+        val OBJ = KawaiiType()
     }
 }
