@@ -10,7 +10,7 @@ interface IFS {
     // Adding
     fun add(obj: Function)
     // Getting
-    operator fun get(name: String, args: Iterable<IObject>): IFunction?
+    operator fun get(name: String, args: Iterable<IObject>?): IFunction?
     // Removing
     fun remove(name: String): IFunction?
     // As *Type*
