@@ -23,7 +23,8 @@ class IFSImpl : IFS {
         var func: IFunction? = null
         var i = AtomicInt(Int.MAX_VALUE)
 
-        data.forEach {
+        for (x in 0..data.size) {
+            val it = data[x]
             val j = AtomicInt()
 
             if (it.name == name) {

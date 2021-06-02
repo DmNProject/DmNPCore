@@ -4,6 +4,7 @@ import org.apache.commons.lang3.time.StopWatch
 import org.junit.Test
 import ru.DmN.Project.kvm.common.data.impl.IFSImpl
 import ru.DmN.Project.kvm.common.obj.api.Function
+import kotlin.test.assertNotNull
 
 class SpeedTest {
     @Test
@@ -19,7 +20,17 @@ class SpeedTest {
         }
         //
         for (i in 0..999) {
-            ifs.get("o$i", null)
+//            ifs._get("o$i", null)
+        }
+        //
+        sw.stop()
+        println(sw)
+        //
+        sw.reset()
+        sw.start()
+        //
+        for (i in 0..999) {
+//            ifs.__get("o$i", null)
         }
         //
         sw.stop()
