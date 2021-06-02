@@ -4,7 +4,6 @@ import org.apache.commons.lang3.time.StopWatch
 import org.junit.Test
 import ru.DmN.Project.kvm.common.data.impl.IFSImpl
 import ru.DmN.Project.kvm.common.obj.api.Function
-import kotlin.test.assertNotNull
 
 class SpeedTest {
     @Test

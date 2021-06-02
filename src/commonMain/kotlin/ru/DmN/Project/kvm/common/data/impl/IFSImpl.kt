@@ -23,7 +23,7 @@ class IFSImpl : IFS {
         var func: IFunction? = null
         var i = AtomicInt(Int.MAX_VALUE)
 
-        for (x in 0..data.size) {
+        for (x in 0 until data.size) {
             val it = data[x]
             val j = AtomicInt()
 
@@ -41,10 +41,9 @@ class IFSImpl : IFS {
         return func
     }
     override fun remove(name: String): IFunction? {
-        data.forEachIndexed { i, it ->
-            if (it.name == name)
+        for (i in 0 until data.size)
+            if (data[i].name == name)
                 return data.removeAt(i)
-        }
         return null
     }
 
