@@ -19,21 +19,19 @@ class IFSImpl : IFS {
 
     override fun add(obj: Function) { data.add(obj) }
     override fun get(name: String, args: Iterable<IObject>): IFunction? {
-        val functions = ArrayList<Pair<IFunction, AtomicInt>>()
+        var func: IFunction? = null
+        var i = AtomicInt(Int.MAX_VALUE)
 
         data.forEach {
-            val i = AtomicInt()
-            val func = Pair(it, i)
+            val j = AtomicInt()
 
-            if (it.argEquals(args.iterator(), i))
-                functions.add(func)
+            if (it.argEquals(args.iterator(), j) && j.i < i.i) {
+                func = it
+                i = j
+            }
         }
 
-        var func: Pair<IFunction?, AtomicInt> = Pair(null, AtomicInt(Int.MAX_VALUE))
-        for (e in functions)
-            if (e.second.i < func.second.i)
-                func = e
-        return func.first
+        return func
     }
     override fun remove(name: String): IFunction? {
         data.forEachIndexed { i, it ->
