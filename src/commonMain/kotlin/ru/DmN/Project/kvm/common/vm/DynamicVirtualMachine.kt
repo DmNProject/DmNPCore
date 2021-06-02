@@ -48,7 +48,7 @@ open class DynamicVirtualMachine(
 
     fun callFunction(instance: IObject, func: IFunction, args: Iterable<IObject>, thread: Thread = Thread("_")): Call {
         val cs = thread.callStack
-        val call = Call(this, cs, instance, func, args)
+        val call = Call(this, thread, instance, func, args)
         cs.addCall(call)
 
         func.call(call)
