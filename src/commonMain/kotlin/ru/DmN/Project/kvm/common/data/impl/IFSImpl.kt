@@ -26,7 +26,7 @@ class IFSImpl : IFS {
         data.forEach {
             val j = AtomicInt()
 
-            if (it.argEquals(args.iterator(), j) && j.value < i.value) {
+            if (it.name == name && it.argEquals(args.iterator(), j) && j.value < i.value) {
                 func = it
                 i = j
             }
@@ -45,4 +45,20 @@ class IFSImpl : IFS {
     override inline fun asArray(): Array<IFunction> = data.toTypedArray()
     override inline fun asList(): List<IFunction> = data
     override inline fun asArrayList(): ArrayList<IFunction> = data
+
+    fun _get(name: String, args: Iterable<IObject>): IFunction? {
+        var func: IFunction? = null
+        var i = AtomicInt(Int.MAX_VALUE)
+
+        data.forEach {
+            val j = AtomicInt()
+
+            if (it.argEquals(args.iterator(), j) && j.value < i.value) {
+                func = it
+                i = j
+            }
+        }
+
+        return func
+    }
 }

@@ -56,8 +56,8 @@ kotlin {
                 implementation(kotlin("test-junit"))
                 implementation("commons-io:commons-io:2.4")
 
-                // https://mvnrepository.com/artifact/com.google.guava/guava
-                implementation("com.google.guava:guava:11.0.2")
+                // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+                implementation ("org.apache.commons:commons-lang3:3.0")
             }
         }
         val jsMain by getting
