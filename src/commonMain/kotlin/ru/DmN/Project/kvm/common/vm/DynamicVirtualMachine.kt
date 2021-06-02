@@ -1,9 +1,9 @@
 package ru.DmN.Project.kvm.common.vm
 
-import ru.DmN.Project.core.data.obj.api.IDS
-import ru.DmN.Project.core.data.obj.api.IES
-import ru.DmN.Project.core.data.obj.impl.IDSImpl
-import ru.DmN.Project.core.data.obj.impl.IESImpl
+import ru.DmN.Project.core.data.api.IDS
+import ru.DmN.Project.core.data.api.IES
+import ru.DmN.Project.core.data.impl.IDSImpl
+import ru.DmN.Project.core.data.impl.IESImpl
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.vm.IVirtualMachine
 import ru.DmN.Project.kvm.common.data.api.IFS

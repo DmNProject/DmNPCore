@@ -1,12 +1,12 @@
-package ru.DmN.Project.core.data.obj.api
+package ru.DmN.Project.core.data.api
 
 import ru.DmN.Project.core.obj.IObject
 
 /**
- * Defines Storage
+ * Extends Storage
  */
-interface IDS<T : IObject> : Iterable<T> {
-    // Size
+interface IES<T : IObject> : Iterable<T> {
+    // Fields
     val size: Int
     // Adding
     fun add(obj: T)

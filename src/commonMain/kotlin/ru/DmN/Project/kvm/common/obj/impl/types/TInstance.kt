@@ -1,6 +1,6 @@
 package ru.DmN.Project.kvm.common.obj.impl.types
 
-import ru.DmN.Project.core.data.obj.api.IES
+import ru.DmN.Project.core.data.api.IES
 import ru.DmN.Project.core.obj.IEO
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.obj.IVObject

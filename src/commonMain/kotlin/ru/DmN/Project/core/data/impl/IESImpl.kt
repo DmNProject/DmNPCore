@@ -1,6 +1,6 @@
-package ru.DmN.Project.core.data.obj.impl
+package ru.DmN.Project.core.data.impl
 
-import ru.DmN.Project.core.data.obj.api.IES
+import ru.DmN.Project.core.data.api.IES
 import ru.DmN.Project.core.obj.IObject
 
 class IESImpl<T : IObject> : IES<T> {

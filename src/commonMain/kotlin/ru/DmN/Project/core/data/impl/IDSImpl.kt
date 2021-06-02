@@ -1,6 +1,6 @@
-package ru.DmN.Project.core.data.obj.impl
+package ru.DmN.Project.core.data.impl
 
-import ru.DmN.Project.core.data.obj.api.IDS
+import ru.DmN.Project.core.data.api.IDS
 import ru.DmN.Project.core.obj.IObject
 
 class IDSImpl<T : IObject> : IDS<T> {

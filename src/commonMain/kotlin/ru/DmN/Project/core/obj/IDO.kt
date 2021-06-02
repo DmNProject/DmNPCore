@@ -1,6 +1,6 @@
 package ru.DmN.Project.core.obj
 
-import ru.DmN.Project.core.data.obj.api.IDS
+import ru.DmN.Project.core.data.api.IDS
 
 /**
  * Defines Object

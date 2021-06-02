@@ -1,7 +1,7 @@
 package ru.DmN.Project.kvm.common.obj.api
 
-import ru.DmN.Project.core.data.obj.api.IDS
-import ru.DmN.Project.core.data.obj.api.IES
+import ru.DmN.Project.core.data.api.IDS
+import ru.DmN.Project.core.data.api.IES
 import ru.DmN.Project.core.obj.IDO
 import ru.DmN.Project.core.obj.IEO
 import ru.DmN.Project.core.obj.IObject
