@@ -4,7 +4,7 @@ import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.kvm.common.data.api.IFS
 import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.obj.api.Function
-import ru.DmN.Project.kvm.common.utils.AtomicInt
+import ru.DmN.Project.core.util.AtomicInt
 
 @Suppress("OVERRIDE_BY_INLINE")
 class IFSImpl : IFS {
@@ -26,7 +26,7 @@ class IFSImpl : IFS {
         data.forEach {
             val j = AtomicInt()
 
-            if (it.argEquals(args.iterator(), j) && j.i < i.i) {
+            if (it.argEquals(args.iterator(), j) && j.value < i.value) {
                 func = it
                 i = j
             }

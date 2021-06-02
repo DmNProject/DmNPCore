@@ -3,7 +3,7 @@ package ru.DmN.Project.kvm.common.obj.api
 import ru.DmN.Project.core.obj.IEO
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.util.Utils.objectEquals
-import ru.DmN.Project.kvm.common.utils.AtomicInt
+import ru.DmN.Project.core.util.AtomicInt
 import ru.DmN.Project.kvm.common.vm.Call
 
 interface IFunction : IObject {

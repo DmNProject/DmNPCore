@@ -2,7 +2,6 @@ package ru.DmN.Project.core.util
 
 import ru.DmN.Project.core.obj.IEO
 import ru.DmN.Project.core.obj.IObject
-import ru.DmN.Project.kvm.common.utils.AtomicInt
 
 object Utils {
     fun objectEquals(o1: IEO<*>, o2: IObject): Boolean {
@@ -25,7 +24,7 @@ object Utils {
         for (e in o1.extends)
             if (e is IEO<*> && objectEquals(e, o2))
                 return true
-        i.i -= 3
+        i.value -= 3
         return false
     }
 }
