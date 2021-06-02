@@ -9,7 +9,9 @@ import ru.DmN.Project.kvm.common.data.impl.IFSImpl
 import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.kvm.common.obj.api.Function
 import ru.DmN.Project.kvm.common.obj.api.IFunctionsContainer
+import ru.DmN.Project.kvm.common.utils.Utils
 import ru.DmN.Project.kvm.common.vm.Call
+import ru.DmN.Project.kvm.common.vm.Thread
 
 @Suppress("OVERRIDE_BY_INLINE")
 class TKawaiiObject : IDO<IObject>, IFunctionsContainer {
@@ -24,7 +26,7 @@ class TKawaiiObject : IDO<IObject>, IFunctionsContainer {
             override val args: Iterable<IObject> = arrayListOf<IObject>().asIterable()
 
             override fun call(call: Call) {
-                TODO("Not yet implemented")
+                call.result = Utils.createString(call.vm, "_result_", this@TKawaiiObject.toString())!!
             }
         })
     }
