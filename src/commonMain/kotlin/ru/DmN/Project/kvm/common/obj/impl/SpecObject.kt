@@ -4,6 +4,7 @@ import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.obj.ObjType
 import ru.DmN.Project.kvm.common.obj.KawaiiType
 
-class SpecObject(override val name: String) : IObject {
-    override val type: ObjType = KawaiiType.SPC
+@Suppress("OVERRIDE_BY_INLINE")
+class SpecObject(override inline val name: String) : IObject {
+    override inline val type: ObjType get() = KawaiiType.SPC
 }

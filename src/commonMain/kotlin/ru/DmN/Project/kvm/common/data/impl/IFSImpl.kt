@@ -6,9 +6,10 @@ import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.obj.api.Function
 import ru.DmN.Project.kvm.common.utils.AtomicInt
 
+@Suppress("OVERRIDE_BY_INLINE")
 class IFSImpl : IFS {
     val data = ArrayList<IFunction>()
-    override val size: Int
+    override inline val size: Int
         get() = data.size
 
     constructor()
@@ -17,7 +18,7 @@ class IFSImpl : IFS {
             data.add(o)
     }
 
-    override fun add(obj: Function) { data.add(obj) }
+    override inline fun add(obj: Function) { data.add(obj) }
     override fun get(name: String, args: Iterable<IObject>): IFunction? {
         var func: IFunction? = null
         var i = AtomicInt(Int.MAX_VALUE)
@@ -41,7 +42,7 @@ class IFSImpl : IFS {
         return null
     }
 
-    override fun asArray(): Array<IFunction> = data.toTypedArray()
-    override fun asList(): List<IFunction> = data
-    override fun asArrayList(): ArrayList<IFunction> = data
+    override inline fun asArray(): Array<IFunction> = data.toTypedArray()
+    override inline fun asList(): List<IFunction> = data
+    override inline fun asArrayList(): ArrayList<IFunction> = data
 }

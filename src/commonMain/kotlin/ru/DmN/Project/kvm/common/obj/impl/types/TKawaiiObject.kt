@@ -11,15 +11,16 @@ import ru.DmN.Project.kvm.common.obj.api.Function
 import ru.DmN.Project.kvm.common.obj.api.IFunctionsContainer
 import ru.DmN.Project.kvm.common.vm.Call
 
+@Suppress("OVERRIDE_BY_INLINE")
 class TKawaiiObject : IDO<IObject>, IFunctionsContainer {
-    override val name: String = "ru.DmN.Project.kvm.Object"
-    override val type: KawaiiType = KawaiiType.OBJ
+    override inline val name: String get() = "ru.DmN.Project.kvm.Object"
+    override inline val type: KawaiiType get() = KawaiiType.OBJ
     override val defines: IDS<IObject> = IDSImpl()
     override val functions: IFS = IFSImpl()
 
     init {
         functions.add(object : Function() {
-            override val name: String = "toString"
+            override inline val name: String get() = "toString"
             override val args: Iterable<IObject> = arrayListOf<IObject>().asIterable()
 
             override fun call(call: Call) {

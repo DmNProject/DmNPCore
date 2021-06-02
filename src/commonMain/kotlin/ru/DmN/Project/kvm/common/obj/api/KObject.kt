@@ -9,8 +9,8 @@ import ru.DmN.Project.core.obj.ObjType
 import ru.DmN.Project.kvm.common.data.api.IFS
 
 open class KObject (
-    override val name: String,
-    override val type: ObjType,
+    override inline val name: String,
+    override inline val type: ObjType,
     override val defines: IDS<IObject>,
     override val functions: IFS,
     override val extends: IES<IObject>
