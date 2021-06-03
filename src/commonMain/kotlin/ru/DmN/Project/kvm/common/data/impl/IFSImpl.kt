@@ -19,7 +19,7 @@ class IFSImpl : IFS {
     }
 
     override inline fun add(obj: Function) { data.add(obj) }
-    override fun get(name: String, args: Iterable<IObject>?): IFunction? {
+    override fun get(name: String, args: List<IObject>?): IFunction? {
         var func: IFunction? = null
         var i = AtomicInt(Int.MAX_VALUE)
 
@@ -29,9 +29,9 @@ class IFSImpl : IFS {
 
             if (it.name == name) {
                 if (args == null) {
-                    if (!it.args.iterator().hasNext())
+                    if (it.args.isEmpty())
                         return it
-                } else if (it.name == name && it.argEquals(args.iterator(), j) && j.value < i.value) {
+                } else if (it.name == name && it.argEquals(args, j) && j.value < i.value) {
                     func = it
                     i = j
                 }

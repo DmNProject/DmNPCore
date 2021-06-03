@@ -7,46 +7,47 @@ import ru.DmN.Project.core.util.AtomicInt
 import ru.DmN.Project.kvm.common.vm.Call
 
 interface IFunction : IObject {
-    val args: Iterable<IObject>
+    val args: List<IObject>
     val code: IntArray?
 
     fun call(call: Call) = code?.let { call.vm.eval(it) }
 
-    fun argEquals(args1: Iterator<IObject>): Boolean {
+    fun argEquals(args1: List<IObject>): Boolean {
         var i = 0
         var j = 0
 
-        val iterator = args.iterator()
-        while (iterator.hasNext()) {
-            if (!args1.hasNext())
+        var x = 0
+        while (x < args.size) {
+            if (args1.size == x)
                 return false
             i++
             //
-            val o1 = iterator.next()
-            val o2 = args1.next()
-            //
-            if (o2 is IEO<*> && objectEquals(o2, o1))
+            val o = args1[x]
+            if (o is IEO<*> && objectEquals(o, args[x]))
                 j++
+            //
+            x++
         }
 
         return i == j
     }
 
-    fun argEquals(args1: Iterator<IObject>, counter: AtomicInt): Boolean {
+    fun argEquals(args1: List<IObject>, counter: AtomicInt): Boolean {
         var i = 0
         var j = 0
 
-        val iterator = args.iterator()
-        while (iterator.hasNext()) {
-            if (!args1.hasNext())
+        var x = 0
+        while (x < args.size) {
+            if (args1.size == x)
                 return false
+            //
             i++
             //
-            val o1 = iterator.next()
-            val o2 = args1.next()
-            //
-            if (o2 is IEO<*> && objectEquals(o2, o1, counter))
+            val o = args1[x]
+            if (o is IEO<*> && objectEquals(o, args[x], counter))
                 j++
+            //
+            x++
         }
 
         return i == j

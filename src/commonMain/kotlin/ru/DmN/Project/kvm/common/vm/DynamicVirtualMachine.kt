@@ -103,7 +103,7 @@ open class DynamicVirtualMachine(
         return call
     }
 
-    fun callFunction(instance: IFunctionsContainer, name: String, args: Iterable<IObject>, thread: Thread = Thread("_")): Call? {
+    fun callFunction(instance: IFunctionsContainer, name: String, args: List<IObject>, thread: Thread = Thread("_")): Call? {
         val func = instance.functions[name, args]
 
         return if (func == null)
