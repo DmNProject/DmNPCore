@@ -48,7 +48,7 @@ open class DynamicVirtualMachine(
         //
         functions.add(object : Function() {
             override val name: String = "println"
-            override val args: Iterable<IObject> = arrayListOf(tOBJECT)
+            override val args: List<IObject> = arrayListOf(tOBJECT)
 
             override fun call(call: Call) {
                 println((call.thread.stack[0] as IVObject).value)

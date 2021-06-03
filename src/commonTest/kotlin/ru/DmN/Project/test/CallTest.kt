@@ -41,7 +41,7 @@ class CallTest {
 
         vm.functions.add(object : Function() {
             override val name: String = "add"
-            override val args: Iterable<IObject> = arrayListOf(vm.tNUMBER, vm.tNUMBER)
+            override val args: List<IObject> = arrayListOf(vm.tNUMBER, vm.tNUMBER)
             override fun call(call: Call) {
                 val iterator = call.args.iterator()
                 val a = iterator.next() as TInstance
@@ -70,7 +70,7 @@ class CallTest {
 
         vm.functions.add(object : Function() {
             override val name: String = "foo"
-            override val args: Iterable<IObject> = arrayListOf(vm.tOBJECT)
+            override val args: List<IObject> = arrayListOf(vm.tOBJECT)
             override fun call(call: Call) {
                 println("Foo Object arg call!")
             }
@@ -78,7 +78,7 @@ class CallTest {
 
         vm.functions.add(object : Function() {
             override val name: String = "foo"
-            override val args: Iterable<IObject> = arrayListOf(vm.tNUMBER)
+            override val args: List<IObject> = arrayListOf(vm.tNUMBER)
             override fun call(call: Call) {
                 println("Foo Int arg call!")
             }
