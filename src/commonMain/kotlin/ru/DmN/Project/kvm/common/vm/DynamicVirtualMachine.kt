@@ -28,7 +28,7 @@ open class DynamicVirtualMachine(
     defines: IDS<IObject> = IDSImpl(),
     functions: IFS = IFSImpl(),
     extends: IES<IObject> = IESImpl()
-) : IVirtualMachine<IntArray>, KObject(name, KawaiiType.VM, defines, functions, extends) {
+) : IVirtualMachine<ByteArray>, KObject(name, KawaiiType.VM, defines, functions, extends) {
     inline val tNULL        get() = defines["null"]!!
     inline val tUNDEFINED   get() = defines["undefined"]!!
     inline val tOBJECT      get() = defines["ru.DmN.Project.kvm.Object"]!!
@@ -57,34 +57,49 @@ open class DynamicVirtualMachine(
         })
     }
 
-    override fun eval(code: IntArray) {
+    companion object {
+        inline val OC_NOP get() = 0.toByte()
+        inline val OC_SSS get() = 1.toByte()
+        inline val OC_CO0 get() = 2.toByte()
+        inline val OC_CO1 get() = 3.toByte()
+        inline val OC_GF0 get() = 4.toByte()
+        inline val OC_GF1 get() = 5.toByte()
+        inline val OC_C0 get() = 6.toByte()
+        inline val OC_C1 get() = 7.toByte()
+        inline val OC_C2 get() = 8.toByte()
+        inline val OC_C3 get() = 9.toByte()
+    }
+
+    override fun eval(code: ByteArray) {
         var i = 0
         while (i < code.size) {
             when (code[i]) {
-                0 -> { }
-                1 -> { mainThread.stack.add(tUNDEFINED) }
-                2 -> TODO("NEED TO REALIZE")
-                3 -> {
+                OC_NOP -> { }
+                OC_SSS -> { mainThread.stack.add(tUNDEFINED) }
+                OC_CO0 -> TODO("NEED TO REALIZE")
+                OC_CO1 -> {
                     when (code[++i]) {
-                        1 -> {
+                        1.toByte() -> {
                             val si = code[++i]
-                            val j = AtomicInt(++i)
-                            mainThread.stack[si] = Utils.createString(this, "_", Utils.getByteArrayOfIntArray(code, j).decodeToString())!!
-                            i = j.value - 1
+                            val start = ++i
+                            val size = code[i++]
+                            mainThread.stack[si.toInt()] = Utils.createString(this, "_", code.decodeToString(i, size + i))!!
+                            i = start + size
                         }
                         else -> TODO("NEED TO REALIZE")
                     }
                 }
-                4 -> TODO("NEED TO REALIZE")
-                5 -> TODO("NEED TO REALIZE")
-                6 -> TODO("NEED TO REALIZE")
-                7 -> TODO("NEED TO REALIZE")
-                8 -> TODO("NEED TO REALIZE")
-                9 -> {
+                OC_GF0 -> TODO("NEED TO REALIZE")
+                OC_GF1 -> TODO("NEED TO REALIZE")
+                OC_C0 -> TODO("NEED TO REALIZE")
+                OC_C1 -> TODO("NEED TO REALIZE")
+                OC_C2 -> TODO("NEED TO REALIZE")
+                OC_C3 -> {
                     val si = code[++i]
-                    val j = AtomicInt(++i)
-                    mainThread.stack[si] = callFunction(this, Utils.getByteArrayOfIntArray(code, j).decodeToString(), mainThread.stack, mainThread)!!.result
-                    i = j.value - 1
+                    val start = ++i
+                    val size = code[i++]
+                    mainThread.stack[si.toInt()] = callFunction(this, code.decodeToString(i, size + i), mainThread.stack, mainThread)!!.result
+                    i = start + size
                 }
             }
 

@@ -6,6 +6,6 @@ import ru.DmN.Project.kvm.common.obj.KawaiiType
 
 abstract class Function : IFunction {
     override val type: ObjType = KawaiiType.VM
-    override val code: IntArray? = null
+    override val code: ByteArray? = null
     override val args: List<IObject> = emptyList()
 }

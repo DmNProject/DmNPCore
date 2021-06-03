@@ -23,7 +23,7 @@ class TKawaiiObject : IDO<IObject>, IFunctionsContainer {
     init {
         functions.add(object : Function() {
             override inline val name: String get() = "toString"
-            override val args: Iterable<IObject> = arrayListOf<IObject>().asIterable()
+            override val args: List<IObject> = arrayListOf()
 
             override fun call(call: Call) {
                 call.result = Utils.createString(call.vm, "_result_", this@TKawaiiObject.toString())!!

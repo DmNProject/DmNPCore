@@ -8,7 +8,7 @@ import ru.DmN.Project.kvm.common.vm.Call
 
 interface IFunction : IObject {
     val args: List<IObject>
-    val code: IntArray?
+    val code: ByteArray?
 
     fun call(call: Call) = code?.let { call.vm.eval(it) }
 
