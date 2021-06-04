@@ -51,7 +51,7 @@ open class DynamicVirtualMachine(
             override val args: List<IObject> = arrayListOf(tOBJECT)
 
             override fun call(call: Call) {
-                println((call.thread.stack[0] as IVObject).value)
+                println((call.thread.stack!![0] as IVObject).value)
                 call.result = tUNDEFINED
             }
         })
@@ -75,7 +75,15 @@ open class DynamicVirtualMachine(
         while (i < code.size) {
             when (code[i]) {
                 OC_NOP -> { }
-                OC_SSS -> { mainThread.stack.add(tUNDEFINED) }
+                OC_SSS -> {
+                    var j = code[++i].toInt();
+                    mainThread.stack = ArrayList();
+                    val stack = mainThread.stack;
+                    while (j != 0) {
+                        stack!!.add(tUNDEFINED)
+                        j--
+                    }
+                }
                 OC_CO0 -> TODO("NEED TO REALIZE")
                 OC_CO1 -> {
                     when (code[++i]) {
@@ -83,7 +91,7 @@ open class DynamicVirtualMachine(
                             val si = code[++i]
                             val start = ++i
                             val size = code[i++]
-                            mainThread.stack[si.toInt()] = Utils.createString(this, "_", code.decodeToString(i, size + i))!!
+                            mainThread.stack!![si.toInt()] = Utils.createString(this, "_", code.decodeToString(i, size + i))!!
                             i = start + size
                         }
                         else -> TODO("NEED TO REALIZE")
@@ -98,7 +106,7 @@ open class DynamicVirtualMachine(
                     val si = code[++i]
                     val start = ++i
                     val size = code[i++]
-                    mainThread.stack[si.toInt()] = callFunction(this, code.decodeToString(i, size + i), mainThread.stack, mainThread)!!.result
+                    mainThread.stack!![si.toInt()] = callFunction(this, code.decodeToString(i, size + i), mainThread.stack!!, mainThread)!!.result
                     i = start + size
                 }
             }

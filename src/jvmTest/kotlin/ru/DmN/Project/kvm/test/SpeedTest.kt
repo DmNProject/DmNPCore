@@ -26,7 +26,6 @@ class SpeedTest {
             sw.resume()
             vm.eval(code)
             sw.suspend()
-            vm.mainThread.stack.clear()
         }
         //
         sw.stop()

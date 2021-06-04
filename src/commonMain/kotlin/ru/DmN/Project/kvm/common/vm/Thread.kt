@@ -9,5 +9,5 @@ import ru.DmN.Project.kvm.common.obj.api.KObject
 
 class Thread(name: String) : KObject(name, KawaiiType.OBJ, IDSImpl(), IFSImpl(), IESImpl()) {
     val callStack = CallStack()
-    val stack = ArrayList<IObject>()
+    var stack: MutableList<IObject>? = null
 }
