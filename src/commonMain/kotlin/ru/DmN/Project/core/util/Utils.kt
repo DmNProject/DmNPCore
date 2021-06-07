@@ -5,6 +5,8 @@ import ru.DmN.Project.core.obj.IObject
 
 object Utils {
     fun objectEquals(o1: IEO<*>, o2: IObject): Boolean {
+        if (o1.aEEF)
+            return o1.eE(o2)
         if (o1.name == o2.name)
             return true
         for (e in o1.extends)
@@ -14,6 +16,8 @@ object Utils {
     }
 
     fun objectEquals(o1: IEO<*>, o2: IObject, i: AtomicInt): Boolean {
+        if (o1.aEEF)
+            return o1.eE(o2)
         if (o1.name == o2.name)
             return true
         i.value++

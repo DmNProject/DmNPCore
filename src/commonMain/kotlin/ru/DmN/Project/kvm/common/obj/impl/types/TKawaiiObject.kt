@@ -2,6 +2,7 @@ package ru.DmN.Project.kvm.common.obj.impl.types
 
 import ru.DmN.Project.core.data.api.IDS
 import ru.DmN.Project.core.data.impl.IDSImpl
+import ru.DmN.Project.core.data.impl.IESImpl
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.obj.IDO
 import ru.DmN.Project.kvm.common.data.api.IFS

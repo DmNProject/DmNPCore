@@ -44,8 +44,11 @@ interface IFunction : IObject {
             i++
             //
             val o = args1[x]
-            if (o is IEO<*> && objectEquals(o, args[x], counter))
-                j++
+            if (o is IEO<*>)
+                if (objectEquals(o, args[x], counter))
+                    j++
+                else
+                    return false
             //
             x++
         }

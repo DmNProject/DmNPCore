@@ -7,4 +7,7 @@ import ru.DmN.Project.kvm.common.data.impl.IFSImpl
 import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.kvm.common.obj.api.KObject
 
-class TKawaiiString(parent: IObject) : KObject("ru.DmN.Project.kvm.String", KawaiiType.OBJ, IDSImpl(), IFSImpl(), IESImpl(parent))
+class TKawaiiString(parent: IObject) : KObject("ru.DmN.Project.kvm.String", KawaiiType.OBJ, IDSImpl(), IFSImpl(), IESImpl(parent)) {
+    inline override val aEEF: Boolean get() = true
+    override fun eE(o: IObject): Boolean = o.name == name || o.name == (extends as IESImpl<IObject>).data[0].name
+}

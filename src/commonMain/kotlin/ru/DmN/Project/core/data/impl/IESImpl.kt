@@ -4,7 +4,7 @@ import ru.DmN.Project.core.data.api.IES
 import ru.DmN.Project.core.obj.IObject
 
 class IESImpl<T : IObject> : IES<T> {
-    val data = ArrayList<T>()
+    val data = ArrayList<T>(1)
     override val size: Int
         get() = data.size
 

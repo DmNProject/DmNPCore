@@ -34,21 +34,4 @@ object Utils {
             null
         }
     }
-
-    fun getByteArrayOfIntArray(ia: IntArray, i: AtomicInt): ByteArray {
-        val size = ia[i.value++]
-        val arr = ArrayList<Byte>()
-        for (j in i.value until size + i.value)
-            arr.add(ia[j].toByte())
-        i.value += size
-        return arr.toByteArray()
-    }
-
-    fun getByteArrayOfIntArray(ia: IntArray, i: AtomicInt, size: Int): ByteArray {
-        val arr = ArrayList<Byte>()
-        for (j in i.value until size + i.value)
-            arr.add(ia[j].toByte())
-        i.value += size
-        return arr.toByteArray()
-    }
 }
