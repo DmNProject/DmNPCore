@@ -1,6 +1,5 @@
 package ru.DmN.Project.lvm.data
 
-import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.util.AtomicInt
 import ru.DmN.Project.lvm.obj.LightFunction
 import ru.DmN.Project.lvm.obj.LightObject

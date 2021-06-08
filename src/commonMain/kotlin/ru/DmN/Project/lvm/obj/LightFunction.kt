@@ -2,7 +2,7 @@ package ru.DmN.Project.lvm.obj
 
 import ru.DmN.Project.core.obj.IEO
 import ru.DmN.Project.core.util.AtomicInt
-import ru.DmN.Project.core.util.Utils
+import ru.DmN.Project.lvm.utils.Utils
 import ru.DmN.Project.lvm.vm.Call
 
 abstract class LightFunction(name: String) : LightObject(name, LightType.FUN) {
