@@ -44,7 +44,7 @@ class LightVirtualMachine (
         extend = tOBJECT
         //
         functions.add(object : LightFunction("println") {
-            override val args: List<IObject> = arrayListOf(tOBJECT)
+            override val args: List<LightObject> = arrayListOf(tOBJECT)
 
             override fun call(call: Call) {
                 println((call.thread.stack!![0] as IVObject).value)
@@ -111,7 +111,7 @@ class LightVirtualMachine (
         }
     }
 
-    fun callFunction(instance: LightObject, func: LightFunction, args: Iterable<IObject>, thread: Thread = Thread("_")): Call {
+    fun callFunction(instance: LightObject, func: LightFunction, args: Iterable<LightObject>, thread: Thread = Thread("_")): Call {
         val cs = thread.callStack
         val call = Call(this, thread, instance, func, args)
         cs.addCall(call)
@@ -122,7 +122,7 @@ class LightVirtualMachine (
         return call
     }
 
-    fun callFunction(instance: LightObject, name: String, args: List<IObject>, thread: Thread = Thread("_")): Call? {
+    fun callFunction(instance: LightObject, name: String, args: List<LightObject>, thread: Thread = Thread("_")): Call? {
         val func = instance.functions[name, args]
 
         return if (func == null)

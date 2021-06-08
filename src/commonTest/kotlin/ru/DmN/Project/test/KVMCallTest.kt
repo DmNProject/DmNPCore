@@ -47,12 +47,12 @@ class KVMCallTest {
                 val a = iterator.next() as TInstance
                 val b = iterator.next() as TInstance
 
-                call.result = createInt(call.vm, "result", a.value as Int + b.value as Int) as IObject
+                call.result = createInt(call.vm, "result", a.value as Int + b.value as Int)!!
             }
         })
 
-        val aVal = createInt(vm, "a", 12) as IObject
-        val bVal = createInt(vm, "b", 21) as IObject
+        val aVal = createInt(vm, "a", 12)!!
+        val bVal = createInt(vm, "b", 21)!!
 
         val call = vm.callFunction(vm, "add", arrayListOf(aVal, bVal))
 
@@ -84,7 +84,7 @@ class KVMCallTest {
             }
         })
 
-        vm.callFunction(vm, "foo", arrayListOf(createInt(vm, "i", 12) as IObject))
-        vm.callFunction(vm, "foo", arrayListOf(createString(vm, "str", "Hello, World!") as IObject))
+        vm.callFunction(vm, "foo", arrayListOf(createInt(vm, "i", 12)!!))
+        vm.callFunction(vm, "foo", arrayListOf(createString(vm, "str", "Hello, World!")!!))
     }
 }

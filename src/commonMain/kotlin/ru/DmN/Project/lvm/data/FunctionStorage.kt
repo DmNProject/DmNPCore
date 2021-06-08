@@ -3,6 +3,7 @@ package ru.DmN.Project.lvm.data
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.util.AtomicInt
 import ru.DmN.Project.lvm.obj.LightFunction
+import ru.DmN.Project.lvm.obj.LightObject
 
 class FunctionStorage {
     val data = ArrayList<LightFunction>()
@@ -15,7 +16,7 @@ class FunctionStorage {
     }
 
     inline fun add(obj: LightFunction) { data.add(obj) }
-    operator fun get(name: String, args: List<LightFunction>?): LightFunction? {
+    operator fun get(name: String, args: List<LightObject>?): LightFunction? {
         var func: LightFunction? = null
         var i = AtomicInt(Int.MAX_VALUE)
 
