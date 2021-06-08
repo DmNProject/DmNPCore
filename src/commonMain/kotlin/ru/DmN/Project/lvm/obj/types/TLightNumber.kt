@@ -1,7 +1,6 @@
 package ru.DmN.Project.lvm.obj.types
 
-import ru.DmN.Project.core.data.impl.IESImpl
-import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.lvm.obj.LightObject
+import ru.DmN.Project.lvm.obj.LightType
 
-class TLightNumber(parent: LightObject) : LightObject("ru.DmN.Project.kvm.Number", KawaiiType.OBJ, extends = IESImpl(parent))
+class TLightNumber(parent: LightObject) : LightObject("ru.DmN.Project.kvm.Number", LightType.OBJ, parent)

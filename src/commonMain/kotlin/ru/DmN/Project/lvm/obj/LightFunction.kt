@@ -1,21 +1,17 @@
 package ru.DmN.Project.lvm.obj
 
 import ru.DmN.Project.core.obj.IEO
-import ru.DmN.Project.core.obj.IObject
-import ru.DmN.Project.core.obj.ObjType
 import ru.DmN.Project.core.util.AtomicInt
 import ru.DmN.Project.core.util.Utils
-import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.lvm.vm.Call
 
-abstract class LightFunction : IObject {
-    override val type: ObjType = KawaiiType.FUN
+abstract class LightFunction(name: String) : LightObject(name, LightType.FUN) {
     open val code: ByteArray? = null
-    open val args: List<IObject> = emptyList()
+    open val args: List<LightObject> = emptyList()
 
     open fun call(call: Call) = code?.let { call.vm.eval(it) }
 
-    fun argEquals(args1: List<IObject>): Boolean {
+    fun argEquals(args1: List<LightObject>): Boolean {
         var i = 0
         var j = 0
 
@@ -35,7 +31,7 @@ abstract class LightFunction : IObject {
         return i == j
     }
 
-    fun argEquals(args1: List<IObject>, counter: AtomicInt): Boolean {
+    fun argEquals(args1: List<LightObject>, counter: AtomicInt): Boolean {
         var i = 0
         var j = 0
 

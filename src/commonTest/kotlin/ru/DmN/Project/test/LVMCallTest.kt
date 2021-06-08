@@ -17,8 +17,7 @@ class LVMCallTest {
 
         vm.init()
 
-        vm.functions.add(object : LightFunction() {
-            override val name: String = "foo"
+        vm.functions.add(object : LightFunction("foo") {
             override fun call(call: Call) {
                 call.result = Utils.createString(call.vm, "result", "Foo!") as IObject
             }
@@ -38,8 +37,7 @@ class LVMCallTest {
 
         vm.init()
 
-        vm.functions.add(object : LightFunction() {
-            override val name: String = "add"
+        vm.functions.add(object : LightFunction("add") {
             override val args: List<IObject> = arrayListOf(vm.tNUMBER, vm.tNUMBER)
             override fun call(call: Call) {
                 val iterator = call.args.iterator()
@@ -67,16 +65,14 @@ class LVMCallTest {
 
         vm.init()
 
-        vm.functions.add(object : LightFunction() {
-            override val name: String = "foo"
+        vm.functions.add(object : LightFunction("foo") {
             override val args: List<IObject> = arrayListOf(vm.tOBJECT)
             override fun call(call: Call) {
                 println("Foo Object arg call!")
             }
         })
 
-        vm.functions.add(object : LightFunction() {
-            override val name: String = "foo"
+        vm.functions.add(object : LightFunction("foo") {
             override val args: List<IObject> = arrayListOf(vm.tNUMBER)
             override fun call(call: Call) {
                 println("Foo Int arg call!")

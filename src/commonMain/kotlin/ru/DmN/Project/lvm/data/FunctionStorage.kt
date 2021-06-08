@@ -15,7 +15,7 @@ class FunctionStorage {
     }
 
     inline fun add(obj: LightFunction) { data.add(obj) }
-    operator fun get(name: String, args: List<IObject>?): LightFunction? {
+    operator fun get(name: String, args: List<LightFunction>?): LightFunction? {
         var func: LightFunction? = null
         var i = AtomicInt(Int.MAX_VALUE)
 

@@ -7,25 +7,27 @@ import ru.DmN.Project.core.data.impl.IESImpl
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.obj.IVObject
 import ru.DmN.Project.core.vm.IVirtualMachine
-import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.kvm.common.obj.impl.SpecValueObject
 import ru.DmN.Project.kvm.common.utils.getUndefined
 import ru.DmN.Project.lvm.data.FunctionStorage
 import ru.DmN.Project.lvm.obj.LightFunction
 import ru.DmN.Project.lvm.obj.LightObject
+import ru.DmN.Project.lvm.obj.LightType
 import ru.DmN.Project.lvm.obj.types.TLightNumber
 import ru.DmN.Project.lvm.obj.types.TLightObject
+import ru.DmN.Project.lvm.obj.types.TLightSpecial
 import ru.DmN.Project.lvm.obj.types.TLightString
 import ru.DmN.Project.lvm.utils.Utils
 
 class LightVirtualMachine (
     name: String = "LightVirtualMachine",
-    defines: IDS<IObject> = IDSImpl(),
+    defines: IDS<LightObject> = IDSImpl(),
     functions: FunctionStorage = FunctionStorage(),
-    extends: IES<LightObject> = IESImpl()
-) : IVirtualMachine<ByteArray>, LightObject(name, KawaiiType.VM, defines, functions, extends) {
-    val tNULL            = SpecValueObject("null", null)
-    val tUNDEFINED       = SpecValueObject("undefined", getUndefined())
+    extend: LightObject? = null,
+    implements: ArrayList<LightObject> = ArrayList()
+) : IVirtualMachine<ByteArray>, LightObject(name, LightType.VM, extend, implements, defines, functions) {
+    val tNULL            = TLightSpecial("null", null)
+    val tUNDEFINED       = TLightSpecial("undefined", getUndefined())
     val tOBJECT          = TLightObject()
     val tSTRING          = TLightString(tOBJECT)
     val tNUMBER          = TLightNumber(tOBJECT)
@@ -39,10 +41,9 @@ class LightVirtualMachine (
         defines.add(tSTRING)
         defines.add(tNUMBER)
         //
-        extends.add(tOBJECT)
+        extend = tOBJECT
         //
-        functions.add(object : LightFunction() {
-            override val name: String = "println"
+        functions.add(object : LightFunction("println") {
             override val args: List<IObject> = arrayListOf(tOBJECT)
 
             override fun call(call: Call) {
