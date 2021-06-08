@@ -4,7 +4,7 @@ import org.apache.commons.lang3.time.StopWatch
 import org.junit.Test
 import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine
 
-class SpeedTest {
+class KVMSpeedTest {
     @Test
     fun test() {
         //

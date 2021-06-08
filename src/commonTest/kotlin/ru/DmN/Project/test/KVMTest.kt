@@ -6,7 +6,7 @@ import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine.Companion.OC_CO1
 import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine.Companion.OC_SSS
 import kotlin.test.Test
 
-class VMTest {
+class KVMTest {
     @Test
     fun test() {
         val vm = DynamicVirtualMachine()
