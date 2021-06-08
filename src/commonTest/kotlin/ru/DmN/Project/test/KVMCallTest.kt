@@ -11,7 +11,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-class CallTest {
+class KVMCallTest {
     @Test
     fun callFunctionTest() {
         val vm = DynamicVirtualMachine()
