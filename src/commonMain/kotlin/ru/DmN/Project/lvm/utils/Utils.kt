@@ -9,8 +9,14 @@ import ru.DmN.Project.lvm.vm.LightVirtualMachine
 
 object Utils {
     fun objectEquals(o1: LightObject, o2: LightObject): Boolean {
-        if (o1.name == o2.name || o1.extend == o2 || o2.extend == o1)
-            return true
+        if (o1.name == o2.name)
+                return true
+        val e1 = o1.extend
+        val e2 = o2.extend
+        if ((e1?.name == o2.name) ||
+            (e2?.name == o1.name) ||
+            (e1?.name == e2?.name))
+                return true
         for (e in o1.implementations)
             if (e.name == o2.name || (e is IEO<*> && objectEquals(e, o2)))
                 return true
@@ -21,10 +27,15 @@ object Utils {
         if (o1.name == o2.name)
             return true
         i.value++
-        for (e in o1.implementations)
-            if (e.name == o2.name)
-                return true
+
+        val e1 = o1.extend
+        val e2 = o2.extend
+        if ((e1?.name == o2.name) ||
+            (e2?.name == o1.name) ||
+            (e1?.name == e2?.name))
+            return true
         i.value++
+
         for (e in o1.implementations)
             if (objectEquals(e, o2))
                 return true

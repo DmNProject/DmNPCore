@@ -42,12 +42,10 @@ abstract class LightFunction(name: String) : LightObject(name, LightType.FUN) {
             //
             i++
             //
-            val o = args1[x]
-            if (o is IEO<*>)
-                if (Utils.objectEquals(o, args[x], counter))
-                    j++
-                else
-                    return false
+            if (Utils.objectEquals(args1[x], args[x], counter))
+                j++
+            else
+                return false
             //
             x++
         }
