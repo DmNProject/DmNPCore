@@ -80,7 +80,7 @@ class LVMCallTest {
             }
         })
 
-        vm.callFunction(vm, "foo", arrayListOf(Utils.createInt(vm, "i", 12)!!))
-        vm.callFunction(vm, "foo", arrayListOf(Utils.createString(vm, "str", "Hello, World!")!!))
+        assertNotNull(vm.callFunction(vm, "foo", arrayListOf(Utils.createInt(vm, "i", 12)!!)))
+        assertNotNull(vm.callFunction(vm, "foo", arrayListOf(Utils.createString(vm, "str", "Hello, World!")!!)))
     }
 }

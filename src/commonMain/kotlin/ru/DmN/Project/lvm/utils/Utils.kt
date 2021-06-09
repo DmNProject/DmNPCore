@@ -14,12 +14,17 @@ object Utils {
         val e1 = o1.extend
         val e2 = o2.extend
         if ((e1?.name == o2.name) ||
-            (e2?.name == o1.name) ||
             (e1?.name == e2?.name))
                 return true
         for (e in o1.implementations)
             if (e.name == o2.name || (e is IEO<*> && objectEquals(e, o2)))
                 return true
+        var le = e1
+        while (le != null) {
+            if (le.name == o2.name)
+                return true
+            le = le.extend
+        }
         return false
     }
 
@@ -31,7 +36,6 @@ object Utils {
         val e1 = o1.extend
         val e2 = o2.extend
         if ((e1?.name == o2.name) ||
-            (e2?.name == o1.name) ||
             (e1?.name == e2?.name))
             return true
         i.value++
@@ -39,7 +43,16 @@ object Utils {
         for (e in o1.implementations)
             if (objectEquals(e, o2))
                 return true
-        i.value -= 2
+        i.value++
+
+        var le = e1
+        while (le != null) {
+            if (le.name == o2.name)
+                return true
+            i.value++
+            le = le.extend
+        }
+        i.value -= 3
         return false
     }
 
