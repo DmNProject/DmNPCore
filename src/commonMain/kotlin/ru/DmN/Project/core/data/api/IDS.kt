@@ -6,16 +6,41 @@ import ru.DmN.Project.core.obj.IObject
  * Defines Storage
  */
 interface IDS<T : IObject> : Iterable<T> {
-    // Size
+    /**
+     * Return size
+     */
     val size: Int
-    // Adding
+
+    /**
+     * Adds an object
+     * @param obj Object to add
+     */
     fun add(obj: T)
-    // Getting
+
+    /**
+     * Getting object with name
+     * @param name Name of object
+     */
     operator fun get(name: String): T?
-    // Removing
+
+    /**
+     * Removing object with name
+     * @param name Name of object
+     */
     fun remove(name: String): T?
-    // As *Type*
+
+    /**
+     * Convert THIS to Array
+     */
     fun asArray(): Array<T>
+
+    /**
+     * Convert THIS to List
+     */
     fun asList(): List<T>
+
+    /**
+     * Convert THIS to ArrayList
+     */
     fun asArrayList(): ArrayList<T>
 }
