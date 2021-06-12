@@ -1,10 +1,12 @@
 package ru.DmN.Project.kvm.common.data.impl
 
+import kotlinx.coroutines.*
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.kvm.common.data.api.IFS
 import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.obj.api.Function
 import ru.DmN.Project.core.util.AtomicInt
+import kotlin.coroutines.CoroutineContext
 
 @Suppress("OVERRIDE_BY_INLINE")
 class IFSImpl : IFS {
@@ -27,7 +29,7 @@ class IFSImpl : IFS {
             val it = data[x]
             val j = AtomicInt()
 
-            if (it.name == name) {
+            if (it.name == name)
                 if (args == null) {
                     if (it.args.isEmpty())
                         return it
@@ -35,7 +37,6 @@ class IFSImpl : IFS {
                     func = it
                     i = j
                 }
-            }
         }
 
         return func
