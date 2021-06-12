@@ -54,16 +54,16 @@ class LightVirtualMachine (
     }
 
     companion object {
-        inline val OC_NOP get() = 0.toByte()
-        inline val OC_SSS get() = 1.toByte()
-        inline val OC_CO0 get() = 2.toByte()
-        inline val OC_CO1 get() = 3.toByte()
-        inline val OC_GF0 get() = 4.toByte()
-        inline val OC_GF1 get() = 5.toByte()
-        inline val OC_C0 get() = 6.toByte()
-        inline val OC_C1 get() = 7.toByte()
-        inline val OC_C2 get() = 8.toByte()
-        inline val OC_C3 get() = 9.toByte()
+        inline val OC_NOP: Byte get() = 0x0
+        inline val OC_SSS: Byte get() = 0x1
+        inline val OC_CO0: Byte get() = 0x2
+        inline val OC_CO1: Byte get() = 0x3
+        inline val OC_GF0: Byte get() = 0x4
+        inline val OC_GF1: Byte get() = 0x5
+        inline val OC_C0: Byte get() = 0x6
+        inline val OC_C1: Byte get() = 0x7
+        inline val OC_C2: Byte get() = 0x8
+        inline val OC_C3: Byte get() = 0x9
     }
 
     override fun eval(code: ByteArray) {
