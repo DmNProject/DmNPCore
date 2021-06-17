@@ -2,7 +2,7 @@ package ru.DmN.Project.kvm
 
 import ru.DmN.Project.core.vm.VirtualMachineProject
 
-object KawaiiVM : VirtualMachineProject<Unit, Unit, Unit, Unit>() {
+object KawaiiVM : VirtualMachineProject() {
     override val name: String
         get() = "DmNPKVM"
     override val version: String

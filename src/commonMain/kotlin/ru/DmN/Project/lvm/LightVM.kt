@@ -3,7 +3,7 @@ package ru.DmN.Project.lvm
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.vm.VirtualMachineProject
 
-object LightVM : VirtualMachineProject<IObject, IObject, IObject, IObject>() {
+object LightVM : VirtualMachineProject() {
     override val name: String
         get() = "DmNPLVM"
     override val version: String
