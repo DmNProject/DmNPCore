@@ -21,9 +21,9 @@ class IFSImpl : IFS {
     }
 
     override inline fun add(obj: Function) { data.add(obj) }
-    override fun get(name: String, args: List<IObject>?): IFunction? {
+    override fun get(name: String, args: List<IObject>?, iA: AtomicInt): IFunction? {
         var func: IFunction? = null
-        var i = AtomicInt(Int.MAX_VALUE)
+        var i = iA
 
         for (x in 0 until data.size) {
             val it = data[x]

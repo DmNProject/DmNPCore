@@ -1,6 +1,7 @@
 package ru.DmN.Project.kvm.common.data.api
 
 import ru.DmN.Project.core.obj.IObject
+import ru.DmN.Project.core.util.AtomicInt
 import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.obj.api.Function
 
@@ -10,7 +11,7 @@ interface IFS {
     // Adding
     fun add(obj: Function)
     // Getting
-    operator fun get(name: String, args: List<IObject>?): IFunction?
+    operator fun get(name: String, args: List<IObject>?, i: AtomicInt = AtomicInt(Int.MAX_VALUE)): IFunction?
     // Removing
     fun remove(name: String): IFunction?
     // As *Type*
