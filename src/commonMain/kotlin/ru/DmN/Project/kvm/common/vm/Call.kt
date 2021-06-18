@@ -2,7 +2,8 @@ package ru.DmN.Project.kvm.common.vm
 
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.kvm.common.obj.api.IFunction
+import ru.DmN.Project.kvm.common.vm.api.IVM
 
-class Call(val vm: DynamicVirtualMachine, val thread: Thread, val instance: IObject, val function: IFunction, val args: Iterable<IObject>) {
-    var result: IObject = vm.defines["null"]!!
+class Call<C, V : IVM<C, V, O>, O : IObject>(val vm: V, val thread: Thread<C, V, O>, val instance: IObject, val function: IFunction<C, V, O>, val args: List<O>) {
+    var result: O = vm.defines["null"]!!
 }

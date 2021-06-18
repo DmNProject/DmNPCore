@@ -1,6 +1,5 @@
 package ru.DmN.Project.lvm
 
-import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.core.vm.VirtualMachineProject
 
 object LightVM : VirtualMachineProject() {

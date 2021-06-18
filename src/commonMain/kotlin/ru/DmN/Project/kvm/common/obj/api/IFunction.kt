@@ -2,15 +2,16 @@ package ru.DmN.Project.kvm.common.obj.api
 
 import ru.DmN.Project.core.obj.IEO
 import ru.DmN.Project.core.obj.IObject
-import ru.DmN.Project.core.util.Utils.objectEquals
 import ru.DmN.Project.core.util.AtomicInt
+import ru.DmN.Project.core.util.Utils.objectEquals
 import ru.DmN.Project.kvm.common.vm.Call
+import ru.DmN.Project.kvm.common.vm.api.IVM
 
-interface IFunction : IObject {
+interface IFunction<C, V : IVM<C, V, O>, O : IObject> : IObject {
     val args: List<IObject>
-    val code: ByteArray?
+    val code: C?
 
-    fun call(call: Call) = code?.let { call.vm.eval(it) }
+    fun call(call: Call<C, V, O>) = code?.let { call.vm.eval(it) }
 
     fun argEquals(args1: List<IObject>): Boolean {
         var i = 0

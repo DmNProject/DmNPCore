@@ -6,5 +6,7 @@ import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.kvm.common.data.impl.IFSImpl
 import ru.DmN.Project.kvm.common.obj.KawaiiType
 import ru.DmN.Project.kvm.common.obj.api.KObject
+import ru.DmN.Project.kvm.common.vm.api.IKTSVM
+import ru.DmN.Project.kvm.common.vm.api.IVM
 
-class TKawaiiNumber(parent: IObject) : KObject("ru.DmN.Project.kvm.Number", KawaiiType.OBJ, IDSImpl(), IFSImpl(), IESImpl(parent))
+class TKawaiiNumber<C, V : IKTSVM<C, V, O>, O : IObject>(parent: O) : KObject<C, V, O>("ru.DmN.Project.kvm.Number", KawaiiType.OBJ, IDSImpl(), IFSImpl(), IESImpl(parent))

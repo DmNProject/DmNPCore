@@ -2,11 +2,13 @@ package ru.DmN.Project.test
 
 import ru.DmN.Project.core.obj.IObject
 import ru.DmN.Project.kvm.common.obj.api.Function
+import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.obj.impl.types.TInstance
 import ru.DmN.Project.kvm.common.utils.Utils.createInt
 import ru.DmN.Project.kvm.common.utils.Utils.createString
 import ru.DmN.Project.kvm.common.vm.Call
 import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine
+import ru.DmN.Project.kvm.common.vm.Thread
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -18,9 +20,9 @@ class KVMCallTest {
 
         vm.init()
 
-        vm.functions.add(object : Function() {
+        vm.functions.add(object : Function<C, V, O>() {
             override val name: String = "foo"
-            override fun call(call: Call) {
+            override fun call(call: CL) {
                 call.result = createString(call.vm, "result", "Foo!") as IObject
             }
         })
@@ -39,10 +41,10 @@ class KVMCallTest {
 
         vm.init()
 
-        vm.functions.add(object : Function() {
+        vm.functions.add(object : Function<C, V, O>() {
             override val name: String = "add"
             override val args: List<IObject> = arrayListOf(vm.tNUMBER, vm.tNUMBER)
-            override fun call(call: Call) {
+            override fun call(call: CL) {
                 val iterator = call.args.iterator()
                 val a = iterator.next() as TInstance
                 val b = iterator.next() as TInstance
@@ -68,18 +70,18 @@ class KVMCallTest {
 
         vm.init()
 
-        vm.functions.add(object : Function() {
+        vm.functions.add(object : Function<C, V, O>() {
             override val name: String = "foo"
             override val args: List<IObject> = arrayListOf(vm.tOBJECT)
-            override fun call(call: Call) {
+            override fun call(call: CL) {
                 println("Foo Object arg call!")
             }
         })
 
-        vm.functions.add(object : Function() {
+        vm.functions.add(object : Function<C, V, O>() {
             override val name: String = "foo"
             override val args: List<IObject> = arrayListOf(vm.tNUMBER)
-            override fun call(call: Call) {
+            override fun call(call: CL) {
                 println("Foo Int arg call!")
             }
         })
@@ -88,3 +90,8 @@ class KVMCallTest {
         vm.callFunction(vm, "foo", arrayListOf(createString(vm, "str", "Hello, World!")!!))
     }
 }
+
+typealias C = ByteArray
+typealias V = DynamicVirtualMachine
+typealias O = IObject
+typealias CL = Call<C, V, O>
