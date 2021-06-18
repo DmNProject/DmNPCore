@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.konan.properties.Properties
 
 plugins {
     id("maven-publish")
-    kotlin("multiplatform") version "1.4.30"
+    kotlin("multiplatform") version "1.5.10"
 }
 
 group = "ru.DmN.Project"
