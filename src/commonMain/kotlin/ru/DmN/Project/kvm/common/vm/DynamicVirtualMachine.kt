@@ -21,10 +21,10 @@ import ru.DmN.Project.kvm.common.vm.api.KVM
 
 open class DynamicVirtualMachine(
     name: String = "DynamicVirtualMachine",
-    defines: IDS<O> = IDSImpl(),
-    functions: IFS<C, V, O> = IFSImpl(),
-    extends: IES<O> = IESImpl()
-) : KVM<C, V, O>(name, defines, functions, extends) {
+    defines: IDS<IObject> = IDSImpl(),
+    functions: IFS<ByteArray, DynamicVirtualMachine, IObject> = IFSImpl(),
+    extends: IES<IObject> = IESImpl()
+) : KVM<ByteArray, DynamicVirtualMachine, IObject>(name, defines, functions, extends) {
     //
     override val tNULL        get() = defines["null"]!!
     override val tUNDEFINED   get() = defines["undefined"]!!
@@ -32,14 +32,14 @@ open class DynamicVirtualMachine(
     override val tSTRING      get() = defines["ru.DmN.Project.kvm.String"]!!
     override val tNUMBER      get() = defines["ru.DmN.Project.kvm.Number"]!!
     //
-    val mainThread = T("MainThread")
+    val mainThread = Thread<ByteArray, DynamicVirtualMachine, IObject>("MainThread")
 
     override fun init() {
         defines.add(SpecValueObject("null", null))
         defines.add(SpecValueObject("undefined", getUndefined()))
-        defines.add(TKawaiiObject<C, V, O>())
-        defines.add(TKawaiiString<C, V, O>(tOBJECT))
-        defines.add(TKawaiiNumber<C, V, O>(tOBJECT))
+        defines.add(TKawaiiObject<ByteArray, DynamicVirtualMachine, IObject>())
+        defines.add(TKawaiiString<ByteArray, DynamicVirtualMachine, IObject>(tOBJECT))
+        defines.add(TKawaiiNumber<ByteArray, DynamicVirtualMachine, IObject>(tOBJECT))
         //
         extends.add(tOBJECT)
         //
@@ -67,7 +67,7 @@ open class DynamicVirtualMachine(
         inline val OC_C3: Byte get() = 0x9
     }
 
-    override fun eval(code: C) {
+    override fun eval(code: ByteArray) {
         var i = 0
         while (i < code.size) {
             when (code[i]) {
@@ -112,7 +112,7 @@ open class DynamicVirtualMachine(
         }
     }
 
-    fun callFunction(instance: O, func: F, args: List<O>, thread: T = Thread("_")): Call<C, V, O> {
+    fun callFunction(instance: IObject, func: IFunction<ByteArray, DynamicVirtualMachine, IObject>, args: List<IObject>, thread: Thread<ByteArray, DynamicVirtualMachine, IObject> = Thread("_")): Call<ByteArray, DynamicVirtualMachine, IObject> {
         val cs = thread.callStack
         val call = Call(this, thread, instance, func, args)
         cs.addCall(call)
@@ -123,19 +123,19 @@ open class DynamicVirtualMachine(
         return call
     }
 
-    fun callFunction(instance: IFunctionsContainer<C, V, O>, name: String, args: List<O>, thread: T = Thread("_")): Call<C, V, O>? {
+    fun callFunction(instance: IFunctionsContainer<ByteArray, DynamicVirtualMachine, IObject>, name: String, args: List<IObject>, thread: Thread<ByteArray, DynamicVirtualMachine, IObject> = Thread("_")): Call<ByteArray, DynamicVirtualMachine, IObject>? {
         val func = instance.functions[name, args]
 
         return if (func == null)
             null
         else {
-           callFunction(instance, func as F, args, thread)
+           callFunction(instance, func as IFunction<ByteArray, DynamicVirtualMachine, IObject>, args, thread)
         }
     }
 }
 
-typealias C = ByteArray
-typealias V = DynamicVirtualMachine
-typealias O = IObject
-typealias F = IFunction<C, V, O>
-typealias T = Thread<C, V, O>
+//typealias C = ByteArray
+//typealias M = DynamicVirtualMachine
+//typealias O = IObject
+//typealias F = IFunction<C, M, O>
+//typealias T = Thread<C, M, O>
