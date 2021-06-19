@@ -3,6 +3,7 @@ package ru.DmN.Project.core.data.impl
 import ru.DmN.Project.core.data.api.IES
 import ru.DmN.Project.core.obj.IObject
 
+@Suppress("UNCHECKED_CAST")
 class IESImpl<T : IObject> : IES<T> {
     val data = ArrayList<T>(1)
     override val size: Int

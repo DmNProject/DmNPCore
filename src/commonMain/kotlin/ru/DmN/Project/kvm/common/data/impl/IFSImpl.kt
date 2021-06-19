@@ -7,7 +7,7 @@ import ru.DmN.Project.kvm.common.obj.api.Function
 import ru.DmN.Project.kvm.common.obj.api.IFunction
 import ru.DmN.Project.kvm.common.vm.api.IVM
 
-@Suppress("OVERRIDE_BY_INLINE")
+@Suppress("OVERRIDE_BY_INLINE", "UNCHECKED_CAST")
 class IFSImpl<C, V : IVM<C, V, O>, O : IObject> : IFS<C, V, O> {
     val data = ArrayList<IFunction<C, V, O>>()
     override inline val size: Int
@@ -20,9 +20,9 @@ class IFSImpl<C, V : IVM<C, V, O>, O : IObject> : IFS<C, V, O> {
     }
 
     override inline fun add(obj: Function<C, V, O>) { data.add(obj) }
-    override fun get(name: String, args: List<IObject>?, iA: AtomicInt): IFunction<C, V, O>? {
+    override fun get(name: String, args: List<IObject>?, i_: AtomicInt): IFunction<C, V, O>? {
         var func: IFunction<C, V, O>? = null
-        var i = iA
+        var i = i_
 
         for (x in 0 until data.size) {
             val it = data[x]

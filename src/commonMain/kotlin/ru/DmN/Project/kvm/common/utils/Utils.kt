@@ -13,6 +13,7 @@ import ru.DmN.Project.kvm.common.vm.DynamicVirtualMachine
 import ru.DmN.Project.kvm.common.vm.api.IKTSVM
 import ru.DmN.Project.kvm.common.vm.api.IVM
 
+@Suppress("UNCHECKED_CAST")
 object Utils {
     fun getDefine(obj: IObject, name: String): IObject {
         var le: IObject = obj

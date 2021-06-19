@@ -13,7 +13,7 @@ import ru.DmN.Project.kvm.common.utils.Utils
 import ru.DmN.Project.kvm.common.vm.Call
 import ru.DmN.Project.kvm.common.vm.api.IKTSVM
 
-@Suppress("OVERRIDE_BY_INLINE")
+@Suppress("OVERRIDE_BY_INLINE", "UNCHECKED_CAST")
 class TKawaiiObject<C, V : IKTSVM<C, V, O>, O : IObject> : IDO<IObject>, IFunctionsContainer<C, V, O> {
     override inline val name: String get() = "ru.DmN.Project.kvm.Object"
     override inline val type: KawaiiType get() = KawaiiType.OBJ
