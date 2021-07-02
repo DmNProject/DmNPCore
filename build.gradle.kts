@@ -5,7 +5,7 @@ plugins {
     kotlin("multiplatform") version "1.5.10"
 }
 
-group = "ru.DmN.Project"
+group = "ru.DmN.project"
 version = "1.0"
 
 repositories {
